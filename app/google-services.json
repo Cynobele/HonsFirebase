@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214644589540",
+    "project_id": "honsfirebase",
+    "storage_bucket": "honsfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214644589540:android:b5052e83b88add5d1afdf1",
+        "android_client_info": {
+          "package_name": "uk.ac.abertay.honsfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214644589540-gumbf0dj8u6sg1k4e1upak0vh61vfmlb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSCa1FK0u2qucNt0me-MjI5RymUjGKtNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214644589540-gumbf0dj8u6sg1k4e1upak0vh61vfmlb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
