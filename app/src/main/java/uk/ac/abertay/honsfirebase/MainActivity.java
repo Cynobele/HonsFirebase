@@ -5,9 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,6 +24,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    String[] permissions = {
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.CHANGE_NETWORK_STATE
+    };
+
+    ConnectivityManager conman;
+    private boolean connected = false; //web connectivity status - false default
 
     private FrameLayout container;
     private FragmentManager fm = getSupportFragmentManager();
@@ -28,13 +45,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseApp.initializeApp(this);
+        if(!Utils.checkAllPermissions(this, permissions)){ //true if all permissions are granted
+            requestPermissions(permissions, 0);
+        }
 
-        auth = FirebaseAuth.getInstance();
+        //initialise network connectivity
+        conman = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkRequest net_req = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .build();
+        conman.registerNetworkCallback(net_req, net_callback);
+
+        //check if a network connection has been established before initialising firebase
+        connected = isNetworkAvailable();
+        if(connected) {
+            FirebaseApp.initializeApp(this);
+            auth = FirebaseAuth.getInstance();
+
+        }else{
+            Toast.makeText(getApplicationContext(), "No internet available, cannot connect to firebase!", Toast.LENGTH_SHORT).show();
+        }
+
         root = findViewById(R.id.constraint_root);
-
-        //fragments will be displayed in this frame
-        container = findViewById(R.id.fragment_container);
+        container = findViewById(R.id.fragment_container); //fragments will be displayed in this frame
 
     }
 
@@ -92,5 +127,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+    }
+
+
+    //SUMMARY
+    //checks if a network is connected to
+    //checks if the network has ethernet, cell or wifi capability
+    //has deprecated value for older versions
+    //returns bool value
+    private Boolean isNetworkAvailable() {
+        conman = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Network nw = conman.getActiveNetwork();
+            if (nw == null) return false;
+            NetworkCapabilities net_capa = conman.getNetworkCapabilities(nw);
+            return net_capa != null && (net_capa.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+                    || net_capa.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    || net_capa.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET));
+        }
+        else { //deprecated function for older android versions
+            NetworkInfo nwInfo = conman.getActiveNetworkInfo();
+            return nwInfo != null && nwInfo.isConnected();
+        }
+    }
+
+    // NETWORK CALLBACK VARIABLE
+    // DEFINED HERE - KEEPS TOP OF DOCUMENT TIDY
+    ConnectivityManager.NetworkCallback net_callback = new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onLost(Network network) {
+            /* report the loss to the user and disable the functionality that depends on it */
+            Toast.makeText(getApplicationContext(), "LOST CONNECTION TO NETWORK!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLosing(Network network, int max_ms) {
+            /*report the potential loss to the user */
+            Toast.makeText(getApplicationContext(), "LOSING CONNECTION!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onUnavailable() {
+            /*report the loss to the user and disable the functionality that depends on it */
+            Toast.makeText(getApplicationContext(), "NETWORK UNAVAILABLE!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAvailable(Network network) {
+            /* report the new connection and resume enable the network functionality */
+            Toast.makeText(getApplicationContext(), "CONNECTED TO NETWORK!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCapabilitiesChanged(Network network, NetworkCapabilities net_capa) {
+            /* report the change in capabilities and adjust the app behaviour accordingly */
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        conman.unregisterNetworkCallback(net_callback);
+        super.onDestroy();
     }
 }

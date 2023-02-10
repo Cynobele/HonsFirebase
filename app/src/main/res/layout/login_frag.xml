@@ -16,14 +16,14 @@
             android:layout_height="50dp"/>
 
         <EditText
-            android:id="@+id/email_field"
+            android:id="@+id/email_field_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/email_hint"
             android:gravity="center"
             />
         <EditText
-            android:id="@+id/pass_field"
+            android:id="@+id/pass_field_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/pass_hint"

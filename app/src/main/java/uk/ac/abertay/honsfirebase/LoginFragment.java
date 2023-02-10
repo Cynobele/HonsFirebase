@@ -31,8 +31,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         login = inflated_view.findViewById(R.id.submit_login); // login details submission button
         forgot = inflated_view.findViewById(R.id.forgot_pass); // forgot password redirect button
         create = inflated_view.findViewById(R.id.create_acc); // create new account redirect button
-        email_field = inflated_view.findViewById(R.id.email_field);
-        pass_field = inflated_view.findViewById(R.id.pass_field);
+        email_field = inflated_view.findViewById(R.id.email_field_login);
+        pass_field = inflated_view.findViewById(R.id.pass_field_login);
 
         login.setOnClickListener(this); //set listeners
         forgot.setOnClickListener(this);

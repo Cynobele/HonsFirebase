@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Executor;
+
 public class CreateAccFragment extends Fragment implements View.OnClickListener {
 
     private FragmentManager fm;
     private Button submit, forgot_pass, login;
     private EditText email_field, pass_field, conf_field;
+    FirebaseAuth auth;
 
     public CreateAccFragment(){
         //empty constructor
@@ -44,6 +57,36 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FirebaseApp.initializeApp(getContext());
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser current_user = auth.getCurrentUser();
+        if(current_user != null){
+            Toast.makeText(getContext(), "Logged into firebase", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createUserAcc(String[] credentials){
+        auth.createUserWithEmailAndPassword(credentials[0], credentials[1])
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success
+                            Toast.makeText(getContext(), "ACCOUNT CREATED!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If sign in fails, display an error message to the user
+                            Toast.makeText(getContext(), "ACCOUNT COULD NOT BE CREATED!\n" +task.getException()
+                                    , Toast.LENGTH_LONG).show();
+                            Log.d("~~RegistrationException~~", "Exception: "+task.getException());
+                        }
+
+                    }
+                });
+    }
+
+    @Override
     public void onClick(View view){
         switch(view.getId()) {
 
@@ -53,6 +96,8 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             //output sanitised and valid values to Firebase and receive response on completion
             case R.id.create_acc_submit:
                 Toast.makeText(getContext(), "Submit account creation details", Toast.LENGTH_SHORT).show();
+                String[] vals = getValuesFromFields();
+                createUserAcc(vals);
                 break;
 
             //SUMMARY
@@ -73,5 +118,35 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
                 //TODO - add forgot pass functionality here & in login frag
                 break;
         }
+    }
+
+
+    //SUMMARY
+    //Retrieves email and password entered into EditText fields by user
+    //Checks that values are not null / empty and casts them to String type
+    //returns String[<email>,<password>]
+    private String[] getValuesFromFields(){
+
+        Editable email = email_field.getText();
+        Editable password = pass_field.getText();
+        Editable conf_pass = conf_field.getText(); //conf_pass & password must match
+        String[] vals = {"email", "password"};
+
+        //very basic validation - just checks fields were entered
+        if(email != null && email.length()>0){
+            vals[0] = email.toString(); //update email value
+
+            if(password != null && password.length()>0) {
+                if (conf_pass.toString().equals(password.toString())) {
+                    vals[1] = password.toString(); //update password value
+                }else { Toast.makeText(getContext(), "Passwords must match!", Toast.LENGTH_SHORT).show(); }
+            }
+            else{
+                Toast.makeText(getContext(), "Password is empty!", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getContext(), "Email is empty!", Toast.LENGTH_SHORT).show();
+        }
+        return vals;
     }
 }
