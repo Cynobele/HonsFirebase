@@ -25,6 +25,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         quiz = findViewById(R.id.quiz_button);
         lesson = findViewById(R.id.lesson_button);
+
+        quiz.setOnClickListener(this);
+        lesson.setOnClickListener(this);
     }
 
     //SUMMARY
