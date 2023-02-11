@@ -3,6 +3,7 @@ package uk.ac.abertay.honsfirebase;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -84,9 +85,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
         return vals;
     }
+
+
     //SUMMARY
     //attempt to login to an existing user in firebase using values entered by user
-    private void attemptFirebaseLogin(String[] credentials){
+    private boolean attemptFirebaseLogin(String[] credentials){
+
         auth.signInWithEmailAndPassword(credentials[0], credentials[1])
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -102,7 +106,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                 });
+
+        if(auth.getCurrentUser() == null){ //check user was logged in
+            return false;
+        }else{ return true;}
     }
+
 
     @Override
     public void onClick(View view){
@@ -112,11 +121,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             //grab email and password , validate data , submit for login
             //if login succeeds , redirect to home screen
             case R.id.submit_login:
-                String[] vals = getValuesFromFields();
-                //Toast.makeText(getContext(), "Login tapped\nEmail:" +vals[0]+" | Pass: "+vals[1], Toast.LENGTH_SHORT).show();
 
-                //TODO - write code to sanitise text, connect to firebase then verify login details
-                attemptFirebaseLogin(vals);
+                String[] vals = getValuesFromFields();
+                boolean flag = attemptFirebaseLogin(vals);
+
+                if(auth.getCurrentUser() != null && flag){
+                    //launch home activity
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             //SUMMARY

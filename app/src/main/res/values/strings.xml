@@ -7,4 +7,7 @@
     <string name="submit">Submit</string>
     <string name="forgot_pass">Forgot Password</string>
     <string name="create_acc">Create Account</string>
+    <string name="quiz_button">Quizzes</string>
+    <string name="lesson_button">Lessons</string>
+    <string name="logout_button">Sign Out</string>
 </resources>

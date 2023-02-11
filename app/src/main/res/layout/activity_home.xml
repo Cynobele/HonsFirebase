@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_root">
+
+    <!-- TODO - add a sign out button the the action bar / add a button here if necessary -->
+
+    <LinearLayout
+        android:id="@+id/linear_root"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/quiz_button"
+            android:text="@string/quiz_button"
+            android:layout_width="match_parent"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            />
+
+        <Button
+            android:id="@+id/lesson_button"
+            android:text="@string/lesson_button"
+            android:layout_width="match_parent"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
