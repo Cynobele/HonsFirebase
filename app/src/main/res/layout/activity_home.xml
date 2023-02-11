@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/main_root">
 
-    <!-- TODO - add a sign out button the the action bar / add a button here if necessary -->
-
     <LinearLayout
         android:id="@+id/linear_root"
         android:orientation="vertical"

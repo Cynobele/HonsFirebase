@@ -54,9 +54,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         FirebaseApp.initializeApp(getContext());
         auth = FirebaseAuth.getInstance();
+
         FirebaseUser current_user = auth.getCurrentUser();
-        if(current_user != null){
+        if(current_user != null){ //redirect if already logged in
             Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -87,9 +90,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
 
+
     //SUMMARY
     //attempt to login to an existing user in firebase using values entered by user
-    private boolean attemptFirebaseLogin(String[] credentials){
+    private void attemptFirebaseLogin(String[] credentials){
 
         auth.signInWithEmailAndPassword(credentials[0], credentials[1])
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -99,6 +103,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             // Sign in successful
                             FirebaseUser user = auth.getCurrentUser();
                             Toast.makeText(getContext(), "LOGIN SUCCESSFUL!\nEmail:"+user.getEmail(), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getActivity(), HomeActivity.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user and log exception
                             Toast.makeText(getContext(), "COULD NOT LOGIN",Toast.LENGTH_SHORT).show();
@@ -106,10 +112,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                 });
-
-        if(auth.getCurrentUser() == null){ //check user was logged in
-            return false;
-        }else{ return true;}
     }
 
 
@@ -123,13 +125,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.submit_login:
 
                 String[] vals = getValuesFromFields();
-                boolean flag = attemptFirebaseLogin(vals);
-
-                if(auth.getCurrentUser() != null && flag){
-                    //launch home activity
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                }
+                attemptFirebaseLogin(vals);
                 break;
 
             //SUMMARY
