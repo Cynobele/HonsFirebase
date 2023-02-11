@@ -63,7 +63,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
         auth = FirebaseAuth.getInstance();
         FirebaseUser current_user = auth.getCurrentUser();
         if(current_user != null){
-            Toast.makeText(getContext(), "Logged into firebase", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -73,12 +73,13 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success
+                            // Account created successfully
                             Toast.makeText(getContext(), "ACCOUNT CREATED!", Toast.LENGTH_SHORT).show();
                         } else {
-                            // If sign in fails, display an error message to the user
+                            // If account creation fails, display an error message to the user
                             Toast.makeText(getContext(), "ACCOUNT COULD NOT BE CREATED!\n" +task.getException()
                                     , Toast.LENGTH_LONG).show();
+                            //logs firebase exception
                             Log.d("~~RegistrationException~~", "Exception: "+task.getException());
                         }
 
@@ -136,7 +137,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
         if(email != null && email.length()>0){
             vals[0] = email.toString(); //update email value
 
-            if(password != null && password.length()>0) {
+            if(password != null && password.length()>5) {
                 if (conf_pass.toString().equals(password.toString())) {
                     vals[1] = password.toString(); //update password value
                 }else { Toast.makeText(getContext(), "Passwords must match!", Toast.LENGTH_SHORT).show(); }

@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private FragmentManager fm;
     private Button login, forgot, create;
     private EditText email_field, pass_field;
+    FirebaseAuth auth;
 
     public LoginFragment(){/*empty constructor*/}
 
@@ -41,6 +48,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return inflated_view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FirebaseApp.initializeApp(getContext());
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser current_user = auth.getCurrentUser();
+        if(current_user != null){
+            Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     //SUMMARY
     //Retrieves email and password entered into EditText fields by user
     //Checks that values are not null / empty and casts them to String type
@@ -55,7 +73,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if(email != null && email.length()>0){
             vals[0] = email.toString(); //update email value
 
-            if(password != null && password.length()>0){
+            if(password != null && password.length()>5){
                 vals[1] = password.toString(); //update password value
             }
             else{
@@ -65,6 +83,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Email is empty!", Toast.LENGTH_SHORT).show();
         }
         return vals;
+    }
+    //SUMMARY
+    //attempt to login to an existing user in firebase using values entered by user
+    private void attemptFirebaseLogin(String[] credentials){
+        auth.signInWithEmailAndPassword(credentials[0], credentials[1])
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in successful
+                            FirebaseUser user = auth.getCurrentUser();
+                            Toast.makeText(getContext(), "LOGIN SUCCESSFUL!\nEmail:"+user.getEmail(), Toast.LENGTH_LONG).show();
+                        } else {
+                            // If sign in fails, display a message to the user and log exception
+                            Toast.makeText(getContext(), "COULD NOT LOGIN",Toast.LENGTH_SHORT).show();
+                            Log.d("~~Login Exception~~", "Exception: "+task.getException());
+                        }
+                    }
+                });
     }
 
     @Override
@@ -76,10 +113,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             //if login succeeds , redirect to home screen
             case R.id.submit_login:
                 String[] vals = getValuesFromFields();
-                Toast.makeText(getContext(), "Login tapped\nEmail:" +vals[0]+" | Pass: "+vals[1], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Login tapped\nEmail:" +vals[0]+" | Pass: "+vals[1], Toast.LENGTH_SHORT).show();
 
                 //TODO - write code to sanitise text, connect to firebase then verify login details
-
+                attemptFirebaseLogin(vals);
                 break;
 
             //SUMMARY
