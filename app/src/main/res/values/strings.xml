@@ -2,6 +2,7 @@
     <string name="app_name">HonsFirebase</string>
     <string name="email_hint">Email Address</string>
     <string name="pass_hint">Password</string>
+    <string name="new_pass_hint">Enter a new Password</string>
     <string name="conf_pass_hint">Confirm Password</string>
     <string name="login">Login</string>
     <string name="submit">Submit</string>

@@ -29,7 +29,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
     private FragmentManager fm;
     private Button submit, forgot_pass, login;
     private EditText email_field, pass_field, conf_field;
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     public CreateAccFragment(){
         //empty constructor
@@ -67,6 +67,10 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    //SUMMARY
+    // attempts to create a new user account in firebase
+    // uses email and password entered by user
+    // TODO - if login is automatic on successful creation, have the isSuccessful check redirect to home
     private void createUserAcc(String[] credentials){
         auth.createUserWithEmailAndPassword(credentials[0], credentials[1])
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
