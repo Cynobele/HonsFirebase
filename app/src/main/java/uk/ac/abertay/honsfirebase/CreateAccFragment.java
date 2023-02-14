@@ -70,15 +70,21 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
     //SUMMARY
     // attempts to create a new user account in firebase
     // uses email and password entered by user
-    // TODO - if login is automatic on successful creation, have the isSuccessful check redirect to home
     private void createUserAcc(String[] credentials){
         auth.createUserWithEmailAndPassword(credentials[0], credentials[1])
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Account created successfully
+                            //Upon successfully creating an account, the user will be automatically logged in by Firebase
+                            //So we redirect them to the login fragment, so that they are passed to the home page (thanks to being logged in already!)
+                            //This saves the user from having to press any additional buttons
                             Toast.makeText(getContext(), "ACCOUNT CREATED!", Toast.LENGTH_SHORT).show();
+                            fm.beginTransaction()
+                                    .replace(R.id.fragment_container, new LoginFragment(), "login")
+                                    .setReorderingAllowed(true)
+                                    .addToBackStack("login")
+                                    .commit();
                         } else {
                             // If account creation fails, display an error message to the user
                             Toast.makeText(getContext(), "ACCOUNT COULD NOT BE CREATED!\n" +task.getException()
@@ -100,7 +106,6 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             //password values must match
             //output sanitised and valid values to Firebase and receive response on completion
             case R.id.create_acc_submit:
-                Toast.makeText(getContext(), "Submit account creation details", Toast.LENGTH_SHORT).show();
                 String[] vals = getValuesFromFields();
                 createUserAcc(vals);
                 break;
@@ -120,7 +125,6 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             //launch forgot password fragment transaction
             case R.id.forgot_pass:
                 Toast.makeText(getContext(), "CreateAcc => ForgotPass", Toast.LENGTH_SHORT).show();
-                //TODO - add forgot pass functionality here & in login frag
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new ForgotPassFragment(), "forgot_pass")
                         .setReorderingAllowed(true)
