@@ -121,6 +121,11 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             case R.id.forgot_pass:
                 Toast.makeText(getContext(), "CreateAcc => ForgotPass", Toast.LENGTH_SHORT).show();
                 //TODO - add forgot pass functionality here & in login frag
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, new ForgotPassFragment(), "forgot_pass")
+                        .setReorderingAllowed(true)
+                        .addToBackStack("forgot_pass")
+                        .commit();
                 break;
         }
     }

@@ -24,14 +24,12 @@
             android:inputType="textEmailAddress"
             android:importantForAutofill="no"
             />
-        <EditText
-            android:id="@+id/pass_field"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/new_pass_hint"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:inputType="textPassword"
-            android:importantForAutofill="no"
+            android:textSize="20dp"
+            android:text="@string/forgot_pass_hint"
             />
         <Space
             android:layout_width="match_parent"

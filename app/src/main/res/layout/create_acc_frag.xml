@@ -24,6 +24,16 @@
             android:inputType="textEmailAddress"
             android:importantForAutofill="no"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/uad_warning"
+            />
+
         <EditText
             android:id="@+id/pass_field_create"
             android:layout_width="match_parent"

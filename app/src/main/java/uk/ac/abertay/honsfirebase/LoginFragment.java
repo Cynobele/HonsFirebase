@@ -144,6 +144,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             //launch forgot password fragment
             case R.id.forgot_pass:
                 Toast.makeText(getContext(), "Login => Forgot Password", Toast.LENGTH_SHORT).show();
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, new ForgotPassFragment(), "forgot_pass")
+                        .setReorderingAllowed(true)
+                        .addToBackStack("forgot_pass")
+                        .commit();
                 break;
         }
     }

@@ -7,8 +7,10 @@
     <string name="login">Login</string>
     <string name="submit">Submit</string>
     <string name="forgot_pass">Forgot Password</string>
+    <string name="forgot_pass_hint">If the Email is registered, a password reset link will be sent!</string>
     <string name="create_acc">Create Account</string>
     <string name="quiz_button">Quizzes</string>
     <string name="lesson_button">Lessons</string>
     <string name="logout_button">Sign Out</string>
+    <string name="uad_warning">University email accounts may not be able to receive password reset links via email!</string>
 </resources>
