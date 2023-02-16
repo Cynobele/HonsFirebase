@@ -105,6 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    //SUMMARY
+    // if the user presses the back key on their device, the app will be minimised
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     //SUMMARY
     //finds which fragment is currently visible, so it can be replaced
     //returns null if no fragment is visible

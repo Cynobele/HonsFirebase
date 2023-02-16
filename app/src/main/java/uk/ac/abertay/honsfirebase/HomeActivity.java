@@ -1,5 +1,6 @@
 package uk.ac.abertay.honsfirebase;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,11 +22,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager fm;
     private Fragment quiz_select = new QuizSelectFragment();
     private Fragment lesson_select = new LessonSelectFragment();
+    private Activity home_activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         //setups
 
         quiz = findViewById(R.id.quiz_button);
@@ -46,6 +53,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+
     //SUMMARY
     // onClick functionality for kebab button on home screen
     public boolean onOptionsItemSelected(MenuItem item){
@@ -61,6 +69,25 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         return true;
+    }
+
+    //SUMMARY
+    // if the user presses the back key on their device
+    // either minimise the application or refresh the home activity and reassign objects
+    @Override
+    public void onBackPressed() {
+        if(fm.getFragments().size() < 1) {
+            moveTaskToBack(true);
+        }else{
+
+            //remove any visible fragments
+            for(Fragment fragment : fm.getFragments()){
+                fm.beginTransaction().remove(fragment).commit();
+            }
+
+            //restart the home activity - this will reassign the buttons and onClickListeners
+            home_activity.recreate();
+        }
     }
 
     //SUMMARY
@@ -81,7 +108,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                             .setReorderingAllowed(true)
                             .addToBackStack("quiz_select").commit();
                 }else{
-                    fm.beginTransaction().replace(R.id.fragment_container, lesson_select, "quiz_select")
+                    fm.beginTransaction().replace(R.id.fragment_container, quiz_select, "quiz_select")
                             .setReorderingAllowed(true)
                             .addToBackStack("quiz_select").commit();
                 }
@@ -93,7 +120,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 setContentView(R.layout.activity_home_container);
                 if(fm.getFragments().size() < 1){
-                    fm.beginTransaction().add(R.id.fragment_container, quiz_select, "lesson_select")
+                    fm.beginTransaction().add(R.id.fragment_container, lesson_select, "lesson_select")
                             .setReorderingAllowed(true)
                             .addToBackStack("lesson_select").commit();
                 }else{
