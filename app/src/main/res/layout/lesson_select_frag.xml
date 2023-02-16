@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_root">
+
+    <!-- rename buttons when topics / order has been determined -->
+    <Button
+        android:id="@+id/lesson_variables"
+        android:text="@string/lesson_topic_1"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"/>
+
+    <Button
+        android:id="@+id/lesson_operators"
+        android:text="@string/lesson_topic_2"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_orange_light"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"/>
+
+    <Button
+        android:id="@+id/lesson_conditions"
+        android:text="@string/lesson_topic_3"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"/>
+
+    <Button
+        android:id="@+id/lesson_loops"
+        android:text="@string/lesson_topic_4"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"/>
+
+    <Button
+        android:id="@+id/lesson_functions"
+        android:text="@string/lesson_topic_5"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"/>
+
+</LinearLayout>
