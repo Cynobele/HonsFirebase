@@ -105,6 +105,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             Toast.makeText(getContext(), "LOGIN SUCCESSFUL!\nEmail:"+user.getEmail(), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(), HomeActivity.class);
                             startActivity(intent);
+                            getActivity().finish();
                         } else {
                             // If sign in fails, display a message to the user and log exception
                             Toast.makeText(getContext(), "COULD NOT LOGIN",Toast.LENGTH_SHORT).show();

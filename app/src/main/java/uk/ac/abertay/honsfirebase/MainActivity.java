@@ -1,10 +1,7 @@
 package uk.ac.abertay.honsfirebase;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -17,10 +14,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
