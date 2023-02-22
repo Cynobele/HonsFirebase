@@ -42,6 +42,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         quiz.setOnClickListener(this);
         lesson.setOnClickListener(this);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null){
+            String tag = extras.getString("frag");
+            extras.remove("frag");
+            setContentView(R.layout.activity_home_container);
+            fm.beginTransaction().add(R.id.fragment_container, lesson_select, "lesson_select")
+                    .setReorderingAllowed(true)
+                    .addToBackStack("lesson_select").commit();
+        }
+
     }
 
     //SUMMARY
@@ -76,15 +87,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     // either minimise the application or refresh the home activity and reassign objects
     @Override
     public void onBackPressed() {
+
         if(fm.getFragments().size() < 1) {
+            //minimize the app if there are no fragments, to prevent crashes
             moveTaskToBack(true);
-        }else{
+        }
 
-            //remove any visible fragments
-            for(Fragment fragment : fm.getFragments()){
-                fm.beginTransaction().remove(fragment).commit();
-            }
-
+        //TODO - ##BUG## moving from lesson select to home activity is broken
+        if(lesson_select.isVisible()) {
+            setContentView(R.layout.activity_home);
             //restart the home activity - this will reassign the buttons and onClickListeners
             home_activity.recreate();
         }
@@ -96,8 +107,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         switch(view.getId()){
             case R.id.quiz_button:
-                //TODO - redirect to quiz selection
-                Toast.makeText(this, "QUIZZES SELECTED", Toast.LENGTH_SHORT).show();
 
                 setContentView(R.layout.activity_home_container);
 
@@ -115,8 +124,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.lesson_button:
-                //TODO - redirect to lesson selection
-                Toast.makeText(this, "LESSONS SELECTED", Toast.LENGTH_SHORT).show();
 
                 setContentView(R.layout.activity_home_container);
                 if(fm.getFragments().size() < 1){

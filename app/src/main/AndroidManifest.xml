@@ -21,6 +21,11 @@
                 <action android:name="android.intent.action.HOME" />
             </intent-filter>
         </activity>
+        <activity android:name=".LessonActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.LESSON" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

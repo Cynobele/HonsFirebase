@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="vars">VARS_LESSON</string>
+    <string name="oper">OPER_LESSON</string>
+    <string name="cond">COND_LESSON</string>
+    <string name="loop">LOOP_LESSON</string>
+    <string name="func">FUNC_LESSON</string>
+
+</resources>

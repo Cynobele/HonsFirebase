@@ -2,6 +2,7 @@ package uk.ac.abertay.honsfirebase;
 
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,10 @@ public class LessonSelectFragment extends Fragment implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.lesson_variables:
-                Toast.makeText(getContext(), "VARIABLES LESSON", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "VARIABLES LESSON", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), LessonActivity.class);
+                intent.putExtra("FRAG_TAG", "VARS_LESSON");
+                startActivity(intent);
                 break;
 
             case R.id.lesson_operators:
