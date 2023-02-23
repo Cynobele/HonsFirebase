@@ -6,39 +6,61 @@
 
     <!-- basic layout for variables lesson content -->
     <!-- TODO update content -->
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linear_root"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/first_box"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_long"
-            android:textSize="18sp"
-            />
+            android:layout_height="match_parent"
+            android:id="@+id/linear_root"
+            android:orientation="vertical"
+            >
 
-        <ImageView
-            android:id="@+id/image"
-            android:adjustViewBounds="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/test_diagram"
-            android:scaleType="fitStart"
-            />
+            <TextView
+                android:id="@+id/first_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/vars_intro_text"
+                android:textSize="18sp"
+                />
 
-        <TextView
-            android:id="@+id/second_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_short"
-            android:textSize="18sp"
-            />
+            <ImageView
+                android:id="@+id/image"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vars_table_diagram"
+                android:scaleType="fitStart"
+                />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/vars_3_parts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/vars_3_parts"
+                android:textSize="18sp"
+                />
 
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/data_types_gif"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/data_types"
+                />
+
+            <TextView
+                android:id="@+id/second_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem_short"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

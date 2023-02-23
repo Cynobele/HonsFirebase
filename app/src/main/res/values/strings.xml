@@ -34,5 +34,18 @@
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <string name="lorem_short">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="lorem_short2"> \u2022 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="vars_intro_text">\nA \'Variable\' is like a box that a computer uses to store data.
+         Variables allow computers to remember/store information, and access it later when required.\n
+         The word \'variable\' means \'changeable\' - data stored inside variables can be changed.
+         This makes them extremely useful things that make up the building blocks of most computer programs.\n
+    </string>
+    <!-- \u2022 will display a round bullet point -->
+    <string name="vars_3_parts">\nVariables are made up of 3 essential parts:\n
+        \t \u2022 A Name (The name of each table column)\n
+        \t \u2022 A Type (The boxes above the table)\n
+        \t \u2022 A Value (The data in the table)\n
+    </string>
 
 </resources>
