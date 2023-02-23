@@ -93,11 +93,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             moveTaskToBack(true);
         }
 
-        //TODO - ##BUG## moving from lesson select to home activity is broken
         if(lesson_select.isVisible()) {
-            setContentView(R.layout.activity_home);
+
             //restart the home activity - this will reassign the buttons and onClickListeners
-            home_activity.recreate();
+            //home_activity.recreate does not work here - it will refresh the selection fragment
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 

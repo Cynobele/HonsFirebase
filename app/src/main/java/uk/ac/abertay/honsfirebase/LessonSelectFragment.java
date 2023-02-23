@@ -46,7 +46,6 @@ public class LessonSelectFragment extends Fragment implements View.OnClickListen
     //SUMMARY
     //  Handles the launching of Lesson Activities through switch statement
     //  Lessons can be accessed in any order
-    //TODO - when lesson activites have been implemented, add transactions to redirect here
     @Override
     public void onClick(View view) {
         switch (view.getId()){
