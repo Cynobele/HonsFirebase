@@ -93,7 +93,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             moveTaskToBack(true);
         }
 
-        if(lesson_select.isVisible()) {
+        if(lesson_select.isVisible() || quiz_select.isVisible()) {
 
             //restart the home activity - this will reassign the buttons and onClickListeners
             //home_activity.recreate does not work here - it will refresh the selection fragment

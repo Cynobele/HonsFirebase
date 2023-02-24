@@ -37,15 +37,25 @@
     <string name="lorem_short2"> \u2022 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
     <string name="vars_intro_text">\nA \'Variable\' is like a box that a computer uses to store data.
-         Variables allow computers to remember/store information, and access it later when required.\n
-         The word \'variable\' means \'changeable\' - data stored inside variables can be changed.
+         Variables allow computers to store a single item of data, and access it later when required.\n
+         \nThe word \'variable\' means \'changeable\' - data stored inside variables can be changed.
          This makes them extremely useful things that make up the building blocks of most computer programs.\n
     </string>
     <!-- \u2022 will display a round bullet point -->
     <string name="vars_3_parts">\nVariables are made up of 3 essential parts:\n
-        \t \u2022 A Name (The name of each table column)\n
-        \t \u2022 A Type (The boxes above the table)\n
-        \t \u2022 A Value (The data in the table)\n
+        \t \u2022 A Name (In orange)\n
+        \t \u2022 A Type (In blue)\n
+        \t \u2022 A Value (In green)\n
     </string>
+    <string name="vars_naming">\n It is important to name variables in a meaningful way, so that
+        it is clear what each variable is being used for.\n\n For example, \'int age = 21\' is an integer
+        type variable that contains the age of something.\n This is easy to see thanks to the meaningful name.\n
+        \u25BA \'int\' (integer) is the variable\'s type. \n
+        \u25BA \'age\' is the variable\'s name. \n
+        \u25BA \'21\' is the variable\'s value.
+    </string>
+    <string name="vars_conventions">\n Variable names should also follow a consistent style throughout
+        your code, this will keep your code easy-to-read and maintain. Variables cannot use spaces in their names!
+        \n\nSeveral common variable naming styles:\n</string>
 
 </resources>

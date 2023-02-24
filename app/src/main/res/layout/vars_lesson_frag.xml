@@ -19,6 +19,8 @@
 
             <TextView
                 android:id="@+id/first_box"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -37,6 +39,8 @@
 
             <TextView
                 android:id="@+id/vars_3_parts"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -53,14 +57,38 @@
                 />
 
             <TextView
-                android:id="@+id/second_box"
+                android:id="@+id/vars_naming"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_short"
+                android:gravity="center"
+                android:text="@string/vars_naming"
                 android:textSize="18sp"
                 />
 
+            <TextView
+                android:id="@+id/vars_conventions"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/vars_conventions"
+                android:textSize="18sp"
+                />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/naming_conventions_gif"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/naming_conventions"
+                />
+
         </LinearLayout>
+
+    <!-- todo - add arrays content -->
 
     </ScrollView>
 </LinearLayout>
