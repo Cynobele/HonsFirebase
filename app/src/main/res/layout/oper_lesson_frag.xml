@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/main_root">
+
+    <ScrollView
+        android:id="@+id/scroll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/operators_intro"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/oper_intro"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/operators_types"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/oper_types"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/arithmetic_intro"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/arithmetic_oper_intro"
+                android:textSize="18sp"
+                />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/arithmetic_gif"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arithmetic_operators"
+                />
+
+            <TextView
+                android:id="@+id/conditional_intro"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/conditional_oper_intro"
+                android:textSize="18sp"
+                />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/conditional_gif"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/conditional_operators"
+                />
+
+            <!-- todo : add logic oper content -->
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </LinearLayout>

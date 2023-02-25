@@ -18,6 +18,7 @@ public class LessonActivity extends AppCompatActivity{
     private String tag; // the lesson that was selected by the user
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment vars_frag = new VariableLessonFragment();
+    private Fragment oper_frag = new OperatorLessonFragment();
     //todo - add the other fragments so fragments can be initialised
 
 
@@ -64,12 +65,12 @@ public class LessonActivity extends AppCompatActivity{
     //tag value is determined by the lesson selection fragment user input buttons
     private void displayLesson(String tag){
 
+        Fragment vis = getVisibleFrag();
         switch(tag){
             case "VARS_LESSON":
                 //use replace if frag is present
                 //use add if none present.
 
-                Fragment vis = getVisibleFrag();
                 if(vis == null){
                     //no fragment is visible
                     fm.beginTransaction().add(R.id.fragment_container, vars_frag, "vars_frag")
@@ -78,6 +79,19 @@ public class LessonActivity extends AppCompatActivity{
                     //a fragment is visible
                     fm.beginTransaction().replace(R.id.fragment_container, vars_frag, "vars_frag")
                             .addToBackStack("vars_frag").setReorderingAllowed(true).commit();
+                }
+
+                break;
+            case "OPER_LESSON":
+
+                if(vis == null){
+                    //no fragment is visible
+                    fm.beginTransaction().add(R.id.fragment_container, oper_frag, "oper_frag")
+                            .addToBackStack("oper_frag").setReorderingAllowed(true).commit();
+                } else {
+                    //a fragment is visible
+                    fm.beginTransaction().replace(R.id.fragment_container, oper_frag, "oper_frag")
+                            .addToBackStack("oper_frag").setReorderingAllowed(true).commit();
                 }
 
                 break;

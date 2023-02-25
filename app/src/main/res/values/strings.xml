@@ -36,12 +36,15 @@
     <string name="lorem_short">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="lorem_short2"> \u2022 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
+
+
+    <!-- #### VARIABLES TEXT VALUES #### -->
     <string name="vars_intro_text">\nA \'Variable\' is like a box that a computer uses to store data.
          Variables allow computers to store a single item of data, and access it later when required.\n
          \nThe word \'variable\' means \'changeable\' - data stored inside variables can be changed.
          This makes them extremely useful things that make up the building blocks of most computer programs.\n
     </string>
-    <!-- \u2022 will display a round bullet point -->
+        <!-- \u2022 will display a round bullet point -->
     <string name="vars_3_parts">\nVariables are made up of 3 essential parts:\n
         \t \u2022 A Name (In orange)\n
         \t \u2022 A Type (In blue)\n
@@ -58,4 +61,28 @@
         your code, this will keep your code easy-to-read and maintain. Variables cannot use spaces in their names!
         \n\nSeveral common variable naming styles:\n</string>
 
+    <string name="vars_arrays">\n An \'Array\' is a list of variables - these allow programmers to store many variables in a more efficient way than having a large group of variables.\n</string>
+    <string name="arrays_explanation">\nLeft - week day variables / Right - An array of week days.\n Values stored inside arrays can be accessed anytime, similarly to variables.
+            You should note that when accessing the array value \"Thursday\" below, array item 3 is accessed despite \"Thursday\" being the fourth value. \nThis is because arrays count by starting at zero.\n</string>
+    <!-- #### END VARIABLES TEXT VALUES #### -->
+
+
+
+    <!-- #### OPERATORS TEXT VALUES #### -->
+    <string name="oper_intro">\n Operators are special symbols that allow programmers to use the values stored inside variables and arrays.</string>
+    <string name="oper_types">\n There are many different kinds of operators, we will cover the most commonly used ones: \n\n
+                                \t \u25BA Arithmetic &amp; Assignment operators \n
+                                \t \u25BA Conditional operators \n
+                                \t \u25BA Logic operators \n</string>
+
+    <string name="arithmetic_oper_intro"> Arithmetic operators are used to perform mathematical functions, like adding two values together. These operators will return a numerical value - the answer to the maths question.\n</string>
+    <string name="conditional_oper_intro"> \nConditional operators are used to compare values. These operators return a boolean value based on the comparison,
+                                            for example (12 > 5) would return TRUE, since 12 is greater than 5.\n</string>
+
+
+
+    <string name="oper_types_old">\n \'Arithmetic Operators\' are used for mathematical operations, and \'Logic Operators\' are used to compare values and manipulate the flow of a program.\n</string>
+
+
+    <!-- #### END OPERATORS TEXT VALUES #### -->
 </resources>

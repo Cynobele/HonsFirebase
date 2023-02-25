@@ -48,16 +48,21 @@ public class LessonSelectFragment extends Fragment implements View.OnClickListen
     //  Lessons can be accessed in any order
     @Override
     public void onClick(View view) {
+        //this intent is shared by each branch
+        Intent intent = new Intent(getContext(), LessonActivity.class);
         switch (view.getId()){
             case R.id.lesson_variables:
                 //Toast.makeText(getContext(), "VARIABLES LESSON", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), LessonActivity.class);
+
                 intent.putExtra("FRAG_TAG", "VARS_LESSON");
                 startActivity(intent);
                 break;
 
             case R.id.lesson_operators:
-                Toast.makeText(getContext(), "OPERATORS LESSON", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "OPERATORS LESSON", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "OPER_LESSON");
+                startActivity(intent);
                 break;
 
             case R.id.lesson_conditions:

@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/main_root">
 
-    <!-- basic layout for variables lesson content -->
-    <!-- TODO update content -->
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -86,9 +84,51 @@
                 android:src="@drawable/naming_conventions"
                 />
 
+            <TextView
+                android:id="@+id/vars_arrays"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/vars_arrays"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/arrays_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/array_example"
+                android:scaleType="fitXY"
+                />
+
+            <TextView
+                android:id="@+id/arrays_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/arrays_explanation"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/access_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/access_example"
+                android:scaleType="fitXY"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
         </LinearLayout>
 
-    <!-- todo - add arrays content -->
 
     </ScrollView>
 </LinearLayout>
