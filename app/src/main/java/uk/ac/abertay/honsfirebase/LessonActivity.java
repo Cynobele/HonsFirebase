@@ -2,10 +2,8 @@ package uk.ac.abertay.honsfirebase;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +17,7 @@ public class LessonActivity extends AppCompatActivity{
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment vars_frag = new VariableLessonFragment();
     private Fragment oper_frag = new OperatorLessonFragment();
+
     //todo - add the other fragments so fragments can be initialised
 
 
@@ -73,10 +72,12 @@ public class LessonActivity extends AppCompatActivity{
 
                 if(vis == null){
                     //no fragment is visible
+
                     fm.beginTransaction().add(R.id.fragment_container, vars_frag, "vars_frag")
                             .addToBackStack("vars_frag").setReorderingAllowed(true).commit();
                 } else {
                     //a fragment is visible
+
                     fm.beginTransaction().replace(R.id.fragment_container, vars_frag, "vars_frag")
                             .addToBackStack("vars_frag").setReorderingAllowed(true).commit();
                 }

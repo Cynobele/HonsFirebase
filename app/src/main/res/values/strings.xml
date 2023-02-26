@@ -79,10 +79,19 @@
     <string name="conditional_oper_intro"> \nConditional operators are used to compare values. These operators return a boolean value based on the comparison,
                                             for example (12 > 5) would return TRUE, since 12 is greater than 5.\n</string>
 
+    <string name="equals_explanation">\n The \'equals\' operator appears in both the arithmetic and conditional operator sets.\n
+                                    \u25BA A single symbol (=) sets one value to be equal to another.\n
+                                    \u25BA A double symbol (==) compares one value to another.\n</string>
+    <string name="logic_oper_intro">\nLogical operators take boolean values as input, and return another value based on the operator used.\n
+                                    \u25BA AND - returns true if the values being compared are \*both\* true.\n
+                                    \u25BA OR - returns true if \*either\* of the values being compared are true.\n
+                                    \u25BA NOT - inverts the boolean value.\n</string>
 
-
-    <string name="oper_types_old">\n \'Arithmetic Operators\' are used for mathematical operations, and \'Logic Operators\' are used to compare values and manipulate the flow of a program.\n</string>
-
+    <string name="logic_examples">\n \u25BA (TRUE &amp;&amp; FALSE) = FALSE\n
+                                \u25BA (TRUE &amp;&amp; TRUE) = TRUE\n
+                                \u25BA (TRUE || FALSE) = TRUE\n
+                                \u25BA (FALSE || FALSE) = FALSE\n
+                                \u25BA (!FALSE) = TRUE\n</string>
 
     <!-- #### END OPERATORS TEXT VALUES #### -->
 </resources>
