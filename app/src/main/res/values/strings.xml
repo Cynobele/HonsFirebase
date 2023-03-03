@@ -71,7 +71,7 @@
     <!-- #### OPERATORS TEXT VALUES #### -->
     <string name="oper_intro">\n Operators are special symbols that allow programmers to use the values stored inside variables and arrays.</string>
     <string name="oper_types">\n There are many different kinds of operators, we will cover the most commonly used ones: \n\n
-                                \t \u25BA Arithmetic &amp; Assignment operators \n
+                                \t \u25BA Arithmetic operators \n
                                 \t \u25BA Conditional operators \n
                                 \t \u25BA Logic operators \n</string>
 
@@ -94,4 +94,49 @@
                                 \u25BA (!FALSE) = TRUE\n</string>
 
     <!-- #### END OPERATORS TEXT VALUES #### -->
+
+
+
+
+    <!-- #### CONDITIONS & SELECTION TEXT VALUES #### -->
+
+    <string name="cond_intro">Certain keywords in programming allow you to control the flow of a program,
+        depending on certain conditions.\n
+                \u25BA IF \n
+                \u25BA ELSE \n
+                \u25BA SWITCH \n</string>
+    <string name="cond_intro_2">These keywords let the program select which sections of code should be used, and which should be skipped - without having a person intervene.\n</string>
+    <string name="flowchart_explanation">\nThe flowchart here represents a simple case of selection. \nThe diamond shape represents the \'if\' statement.
+                It checks the value that is passed into it, and chooses which path to go down based on the result.\n
+                \u25BA If the car has fuel, it doesn\'t need filled.\n
+                \u25BA If the car is empty, it needs filled.\n</string>
+
+    <string name="flowchart_code">The screenshot below shows the car fuel tank flowchart example as code.\n
+                \u25BA The \'if\' section will check the value first.\n
+                \u25BA If the result is true, the code inside here will run.\n
+                \u25BA The \'else\' section will run if the result was false.\n</string>
+
+    <string name="if_else_code">\nHere is a slightly more complex version of the car fuel tank example.\n
+                There are two \'if\' sections here, these will check their conditions one at a time.\n If neither of them are true, then the \'else\' section will be used instead.\n
+                \nOnce one of the sections has been used, the others will not check their conditions - the program will move on.</string>
+
+    <string name="if_else_explanation">\u25BA The first \'if\' will run if the tank is less than a quarter full.\n
+                    \u25BA The second will run instead, if the tank is less than half full, but more than a quarter full.\n
+                    \u25BA The final section will run if the tank if more than half full.\n </string>
+
+    <string name="switch_explanation">The \'switch\' statement works similarly to \'if\'.\n
+            It receives an integer value and compares it to its \'case\' values. If there is a match, the matching section of code will run.\n
+            \nThese are much faster than using many \'if else\' statements together - and far easier to maintain.\n</string>
+
+    <!-- ## END CONDITIONS & SELECTION TEXT VALUES #### -->
+
+
+
+    <!-- #### LOOPS TEXT VALUES #### -->
+
+    <string name="loops_intro">Loops are pieces of code that will repeatedly execute until a condition is met.\n
+            The keywords for loops are: \n \u25BA \'FOR\' \n \u25BA \'WHILE\'\n</string>
+
+
+    <!-- #### END LOOPS TEXT VALUES #### -->
 </resources>

@@ -66,11 +66,17 @@ public class LessonSelectFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.lesson_conditions:
-                Toast.makeText(getContext(), "CONDITIONS & SELECTION LESSON", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "CONDITIONS & SELECTION LESSON", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "COND_LESSON");
+                startActivity(intent);
                 break;
 
             case R.id.lesson_loops:
-                Toast.makeText(getContext(), "LOOPS LESSON", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "LOOPS LESSON", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "LOOP_LESSON");
+                startActivity(intent);
                 break;
 
             case R.id.lesson_functions:

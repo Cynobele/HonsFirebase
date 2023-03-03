@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linear_root"
+            >
+
+            <TextView
+                android:id="@+id/first_box"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cond_intro"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/second_box"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cond_intro_2"
+                android:textSize="18sp"
+                />
+
+
+            <ImageView
+                android:id="@+id/flowchart"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/if_flowchart"
+                />
+
+            <TextView
+                android:id="@+id/flowchart_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/flowchart_explanation"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/example_in_code"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/flowchart_code"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/if_statement"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/if_statement_example"
+                android:scaleType="center"
+                />
+
+            <TextView
+                android:id="@+id/if_else_code"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/if_else_code"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/if_else_statement"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/if_else_statement"
+                android:scaleType="center"
+                />
+
+            <TextView
+                android:id="@+id/if_else_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/if_else_explanation"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/switch_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/switch_explanation"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/switch_example"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/switch_example"
+                android:scaleType="center"
+                />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

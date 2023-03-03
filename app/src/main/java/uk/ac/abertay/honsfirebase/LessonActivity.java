@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import java.util.List;
 
 public class LessonActivity extends AppCompatActivity{
@@ -17,6 +16,8 @@ public class LessonActivity extends AppCompatActivity{
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment vars_frag = new VariableLessonFragment();
     private Fragment oper_frag = new OperatorLessonFragment();
+    private Fragment cond_frag = new ConditionLessonFragment();
+    private Fragment loop_frag = new LoopLessonFragment();
 
     //todo - add the other fragments so fragments can be initialised
 
@@ -96,6 +97,34 @@ public class LessonActivity extends AppCompatActivity{
                 }
 
                 break;
+
+            case "COND_LESSON":
+
+            if(vis == null){
+                //no fragment is visible
+                fm.beginTransaction().add(R.id.fragment_container, cond_frag, "cond_frag")
+                        .addToBackStack("cond_frag").setReorderingAllowed(true).commit();
+            } else {
+                //a fragment is visible
+                fm.beginTransaction().replace(R.id.fragment_container, cond_frag, "cond_frag")
+                        .addToBackStack("cond_frag").setReorderingAllowed(true).commit();
+            }
+
+            break;
+
+            case "LOOP_LESSON":
+
+            if(vis == null){
+                //no fragment is visible
+                fm.beginTransaction().add(R.id.fragment_container, loop_frag, "loop_frag")
+                        .addToBackStack("loop_frag").setReorderingAllowed(true).commit();
+            } else {
+                //a fragment is visible
+                fm.beginTransaction().replace(R.id.fragment_container, loop_frag, "loop_frag")
+                        .addToBackStack("loop_frag").setReorderingAllowed(true).commit();
+            }
+
+            break;
         }
     }
 
