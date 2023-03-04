@@ -27,7 +27,81 @@
                 android:textSize="18sp"
                 />
 
+            <ImageView
+                android:id="@+id/for_loop"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/for_loop"
+                />
 
+            <TextView
+                android:id="@+id/for_loop_explanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/for_loops"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/for_loop_code"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/for_loop_code"
+                android:scaleType="center"
+                />
+
+            <TextView
+                android:id="@+id/for_code_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/for_code_explanation"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/while_loop"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/while_loop"
+                />
+
+            <TextView
+                android:id="@+id/while_loop_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/while_loop_explanation"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/while_loop_code"
+                android:layout_width="match_parent"
+                android:layout_height="252dp"
+                android:adjustViewBounds="true"
+                android:scaleType="center"
+                android:src="@drawable/while_loop_code" />
+
+            <TextView
+                android:id="@+id/while_code_explanation"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/while_loop_code"
+                android:textSize="18sp"
+                />
 
         </LinearLayout>
 

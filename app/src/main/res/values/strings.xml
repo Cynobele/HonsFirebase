@@ -134,8 +134,25 @@
 
     <!-- #### LOOPS TEXT VALUES #### -->
 
-    <string name="loops_intro">Loops are pieces of code that will repeatedly execute until a condition is met.\n
+    <string name="loops_intro">Loops are pieces of code that will repeatedly execute until either a condition is met (conditional loops), or
+            until the loop has repeated a certain number of times (fixed loops).\n\n
             The keywords for loops are: \n \u25BA \'FOR\' \n \u25BA \'WHILE\'\n</string>
+
+    <string name="for_loops">\n The flowchart above shows the concept of a for loop.\n This loop will keep executing its code until the counter
+            variable is greater than 10. Each time the code is executed, the counter value is increased by 1.\n</string>
+
+    <string name="for_code_explanation">The screenshot above shows the same for loop as in the flowchart, written in code.
+                \n Let\'s break down the stuff inside the brackets:\n\n \u25BA int counter = 0\n
+                The first section here creates the integer value \'counter\' and sets it to 0.\n\n
+                \u25BA counter &#60; 10\n This is the condition that the loop will check for. The loop will repeat until this condition is false.\n\n
+                \u25BA counter++ \n The final section will cause the counter variable to increment each time the loop restarts.
+                    \'counter++\' is the same as writing \'counter = counter + 1\'.\n</string>
+
+    <string name="while_loop_explanation">\nThe flowchart above shows the concept of a \'while\' loop. This kind of loop will repeatedly execute until a certain condition is met.
+           \nThe loop will repeat until the boolean variable \'flag\' is false.</string>
+
+    <string name="while_loop_code">The code here is a while loop, which will continue to execute its code until the condition is false.\n
+            \n In this example, number will increase by 1 each time the loop runs. Once number is &gt; 3, the flag value will be set to false - this will end the while loop.\n</string>
 
 
     <!-- #### END LOOPS TEXT VALUES #### -->
