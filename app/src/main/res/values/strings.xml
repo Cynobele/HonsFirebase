@@ -156,4 +156,34 @@
 
 
     <!-- #### END LOOPS TEXT VALUES #### -->
+
+
+
+    <!-- #### FUNCTIONS TEXT VALUES #### -->
+
+    <string name="funcs_intro">Functions are blocks of code that can be re-used, preventing the need to rewrite the same code multiple times over.
+           \n\n Functions can take values as input, and can return a new value as output. However, you can also have functions with no input or output.\n </string>
+
+    <string name="inbuilt_funcs">\nMost programming languages come with built in functions, here are a couple of common ones:\n \u25BA length - returns the number of characters in a String value\n
+            \u25BA size - returns the number of values inside an array \n
+            \u25BA print - sends the value to be displayed on screen for the user\n</string>
+
+    <string name="function_code_explanation">\nThe code above shows a function that receives two integer values as input, then adds them together and returns the result.\n
+        \n A function requires a name and a type - in this example the name is \'addTwoNumbers\' and the type is \'int\'.
+        \n\nThe data type of the function determines what type of value it can return. For example, an int type function can only return integer values.
+        \n\nA function that does not return a value should have the type \'void\'. The function shown below receives a String value and displays it on screen for the user.
+        \n</string>
+
+    <string name="void_explanation">\n If the function receives input values, the type of each value must be specified so that the function knows what to expect.\n
+        \n Functions can be accessed and used like seen below:</string>
+
+    <string name="function_result">\nThe function receives the numbers \'5\' and \'8\', so the returned value would be \'13\'.\n</string>
+
+    <string name="looping_function_text">\nHere, the same function is accessed multiple times by a for loop.\n
+            \nIf the original value of \'total\' is 13, then after one cycle through the loop, \'total\' would be 16 (then 19, 22 etc).\n
+            \nThe function will continually add 3 to the value \'total\', since we are passing these values to the function as input.\n</string>
+
+    <!-- #### END FUNCTIONS TEXT VALUES #### -->
+
+
 </resources>

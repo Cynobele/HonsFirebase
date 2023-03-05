@@ -18,8 +18,8 @@ public class LessonActivity extends AppCompatActivity{
     private Fragment oper_frag = new OperatorLessonFragment();
     private Fragment cond_frag = new ConditionLessonFragment();
     private Fragment loop_frag = new LoopLessonFragment();
+    private Fragment func_frag = new FunctionLessonFragment();
 
-    //todo - add the other fragments so fragments can be initialised
 
 
     @Override
@@ -36,7 +36,7 @@ public class LessonActivity extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         if(extras!=null){
             tag = extras.getString("FRAG_TAG");
-            Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
             displayLesson(tag);
         }
     }
@@ -125,6 +125,20 @@ public class LessonActivity extends AppCompatActivity{
             }
 
             break;
+
+            case "FUNC_LESSON":
+
+                if(vis == null){
+                    //no fragment is visible
+                    fm.beginTransaction().add(R.id.fragment_container, func_frag, "func_frag")
+                            .addToBackStack("func_frag").setReorderingAllowed(true).commit();
+                } else {
+                    //a fragment is visible
+                    fm.beginTransaction().replace(R.id.fragment_container, func_frag, "func_frag")
+                            .addToBackStack("func_frag").setReorderingAllowed(true).commit();
+                }
+
+                break;
         }
     }
 

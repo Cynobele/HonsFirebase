@@ -80,7 +80,10 @@ public class LessonSelectFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.lesson_functions:
-                Toast.makeText(getContext(), "FUNCTIONS LESSON", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "FUNCTIONS LESSON", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "FUNC_LESSON");
+                startActivity(intent);
                 break;
 
         }
