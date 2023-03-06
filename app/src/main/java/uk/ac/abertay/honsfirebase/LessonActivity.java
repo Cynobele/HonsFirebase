@@ -2,6 +2,7 @@ package uk.ac.abertay.honsfirebase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import java.util.List;
 public class LessonActivity extends AppCompatActivity{
 
     private FrameLayout container;
-    private String tag; // the lesson that was selected by the user
+    private String tag = "initial"; // the lesson that was selected by the user
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment vars_frag = new VariableLessonFragment();
     private Fragment oper_frag = new OperatorLessonFragment();
@@ -26,19 +27,27 @@ public class LessonActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+
+        //if the view is being recreated (ie, phone rotate) then savedInstanceState != null
+        //prevents the view from duplicating
+        if (savedInstanceState == null){
+            Bundle extras = getIntent().getExtras();
+            if(extras!=null){
+                tag = extras.getString("FRAG_TAG");
+                //Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
+                displayLesson(tag);
+            }
+        }
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //pass tag to displayLesson
+    public void onSaveInstanceState(Bundle outState) {
 
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null){
-            tag = extras.getString("FRAG_TAG");
-            //Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
-            displayLesson(tag);
-        }
+        //this value is not important - just need something so bundle != null when recreating the view
+        //this will prevent the view from being doubled when recreating
+        outState.putString("tag", tag);
+
+        super.onSaveInstanceState(outState);
     }
 
     //SUMMARY

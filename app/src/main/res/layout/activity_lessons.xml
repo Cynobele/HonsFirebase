@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/main_root">
 
-    <!-- TODO edit supportactionbar to be the colour used on selection screen for each topic -->
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

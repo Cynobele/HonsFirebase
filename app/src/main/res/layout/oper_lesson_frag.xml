@@ -117,10 +117,6 @@
                 android:textSize="18sp"
                 />
 
-
-
-            <!-- todo : add logic oper content -->
-
         </LinearLayout>
 
 
