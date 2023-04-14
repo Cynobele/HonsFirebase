@@ -26,6 +26,11 @@
                 <action android:name="android.intent.action.LESSON" />
             </intent-filter>
         </activity>
+        <activity android:name=".QuizActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.QUIZ" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

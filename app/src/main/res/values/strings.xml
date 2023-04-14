@@ -185,5 +185,72 @@
 
     <!-- #### END FUNCTIONS TEXT VALUES #### -->
 
+    <string-array name="vars_questions">
+        <item>What is a variable?</item>
+        <item>What is an array?</item>
+        <item>What is a String data type?</item>
+        <item>What is an Integer data type?</item>
+        <item>What is a Boolean data type?</item>
+        <item>What is a Float data type?</item>
+        <item>Can we assign values from one data type to variables of another type?</item>
+        <item>What is the camel case naming convention?</item>
+        <item>What is the pascal case naming convention?</item>
+        <item>What is the snake case naming convention?</item>
+
+    </string-array>
+    <string-array name="vars_types">
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+    </string-array>
+    <string-array name="vars_correct_answers">
+        <item>A named container for storing a value</item>
+        <item>A collection of variables</item>
+        <item>A sequence of characters</item>
+        <item>A whole number, negative or positive</item>
+        <item>A logical value that can be either True or False</item>
+        <item>A decimal number, negative or positive</item>
+        <item>No</item>
+        <item>Each word in the variable name is capitalized, except the first word</item>
+        <item>Every word in the variable name is capitalized</item>
+        <item>Each word in the variable name is separated by underscores</item>
+    </string-array>
+    <string-array name="vars_wrong_answers">
+        <item>A collection of values</item>
+        <item>A whole number</item>
+        <item>A logical value that can be either True or False</item>
+        <item>A decimal number</item>
+        <item>A very long piece of string</item>
+        <item>The number of values in an array</item>
+        <item>A collection of variables</item>
+        <item>A decimal number</item>
+        <item>A whole number</item>
+        <item>A named container for storing a value</item>
+        <item>A whole number</item>
+        <item>A single character</item>
+        <item>No</item>
+        <item>No</item>
+        <item>Every word in the variable name is separated by commas</item>
+        <item>Every word in the variable name is separated by underscores</item>
+        <item>Every word in the variable name is separated by underscores</item>
+        <item>Every word in the variable name is separated by hyphens</item>
+        <item>Every word in the variable name is capitalized, except the first</item>
+        <item>Every word in the variable name is separated by hyphens</item>
+
+    </string-array>
+
+    <!-- Vars Quiz Values -->
+
+
+
+
+    <!-- END -->
 
 </resources>

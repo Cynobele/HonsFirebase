@@ -2,6 +2,7 @@ package uk.ac.abertay.honsfirebase;
 
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,9 +51,15 @@ public class QuizSelectFragment extends Fragment implements View.OnClickListener
     //TODO - add activity transactions when quiz activities are implemented
     @Override
     public void onClick(View view) {
+
+        Intent intent = new Intent(getContext(), QuizActivity.class);
+
         switch (view.getId()){
             case R.id.quiz_variables:
                 Toast.makeText(getContext(), "VARIABLES QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "VARS_QUIZ");
+                startActivity(intent);
                 break;
 
             case R.id.quiz_operators:
