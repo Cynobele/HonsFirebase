@@ -7,7 +7,6 @@ import java.util.Random;
 public class QuestionCollection {
 
 
-    //TODO - change map to be <q_number, question>
     //a map to hold the questions
     private Map<Integer, Question> QUESTIONS = new HashMap<>();
 

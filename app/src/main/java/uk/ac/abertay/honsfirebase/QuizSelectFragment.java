@@ -45,10 +45,11 @@ public class QuizSelectFragment extends Fragment implements View.OnClickListener
     }
 
 
+
+    //TODO - vars quiz now working, other topics need implemented
+
     //SUMMARY
     //  Launches a quiz activity based on user selection
-    //  The mixed topics quiz CAN ONLY BE ACCESSED IF USER HAS ATTEMPTED ALL OTHER TOPICS
-    //TODO - add activity transactions when quiz activities are implemented
     @Override
     public void onClick(View view) {
 
@@ -64,18 +65,30 @@ public class QuizSelectFragment extends Fragment implements View.OnClickListener
 
             case R.id.quiz_operators:
                 Toast.makeText(getContext(), "OPERATORS QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "OPER_QUIZ");
+                startActivity(intent);
                 break;
 
             case R.id.quiz_conditions:
                 Toast.makeText(getContext(), "CONDITIONS & SELECTION QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "COND_QUIZ");
+                startActivity(intent);
                 break;
 
             case R.id.quiz_loops:
                 Toast.makeText(getContext(), "LOOPS QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "LOOPS_QUIZ");
+                startActivity(intent);
                 break;
 
             case R.id.quiz_functions:
                 Toast.makeText(getContext(), "FUNCTIONS QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "FUNC_QUIZ");
+                startActivity(intent);
                 break;
 
             case R.id.quiz_mixed:

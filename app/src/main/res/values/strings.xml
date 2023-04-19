@@ -138,7 +138,7 @@
             until the loop has repeated a certain number of times (fixed loops).\n\n
             The keywords for loops are: \n \u25BA \'FOR\' \n \u25BA \'WHILE\'\n</string>
 
-    <string name="for_loops">\n The flowchart above shows the concept of a for loop.\n This loop will keep executing its code until the counter
+    <string name="for_loops">\n The flowchart above shows the concept of a \'for\' loop.\n This loop will keep executing its code until the counter
             variable is greater than 10. Each time the code is executed, the counter value is increased by 1.\n</string>
 
     <string name="for_code_explanation">The screenshot above shows the same for loop as in the flowchart, written in code.
@@ -185,6 +185,8 @@
 
     <!-- #### END FUNCTIONS TEXT VALUES #### -->
 
+    <!-- Vars Quiz Values -->
+
     <string-array name="vars_questions">
         <item>What is a variable?</item>
         <item>What is an array?</item>
@@ -217,7 +219,7 @@
         <item>A whole number, negative or positive</item>
         <item>A logical value that can be either True or False</item>
         <item>A decimal number, negative or positive</item>
-        <item>No</item>
+        <item>no cant cannot impossible incorrect</item>
         <item>Each word in the variable name is capitalized, except the first word</item>
         <item>Every word in the variable name is capitalized</item>
         <item>Each word in the variable name is separated by underscores</item>
@@ -235,8 +237,8 @@
         <item>A named container for storing a value</item>
         <item>A whole number</item>
         <item>A single character</item>
-        <item>No</item>
-        <item>No</item>
+        <item>N/A</item>
+        <item>N/A</item>
         <item>Every word in the variable name is separated by commas</item>
         <item>Every word in the variable name is separated by underscores</item>
         <item>Every word in the variable name is separated by underscores</item>
@@ -246,10 +248,271 @@
 
     </string-array>
 
-    <!-- Vars Quiz Values -->
+    <!-- END -->
+
+
+    <!-- OPERATORS quiz values -->
+
+
+    <string-array name="oper_questions">
+        <item>Which of these operators are used to assign a value?</item>
+        <item>Which of these operators are used to increment a value?</item>
+        <item>What is the value of \'a\'?</item>
+        <item>Select the operation that gives the value: FALSE</item>
+        <item>Which of these operators are used to compare values?</item>
+        <item>Select the operation that gives the value: TRUE</item>
+        <item>What is the value of \'result\'?</item>
+        <item>What is the value of \'flag\'?</item>
+        <item>What is this operator: &gt;=</item>
+        <item>What is this operator: !=</item>
+
+    </string-array>
+    <string-array name="oper_types">
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+    </string-array>
+    <string-array name="oper_correct_answers">
+        <item>=</item>
+        <item>++</item>
+        <item>a true</item>
+        <item>(TRUE &amp;&amp; FALSE)</item>
+        <item>==</item>
+        <item>((FALSE || TRUE) &amp;&amp; !FALSE)</item>
+        <item>0 zero none empty</item>
+        <item>flag true</item>
+        <item>Greater than or equal to</item>
+        <item>Not equal to</item>
+    </string-array>
+    <string-array name="oper_wrong_answers">
+        <item>==</item>
+        <item>!=</item>
+        <item>+</item>
+        <item>+*</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>(TRUE || TRUE)</item>
+        <item>(!FALSE)</item>
+        <item>=</item>
+        <item>++=</item>
+        <item>(!TRUE &amp;&amp; TRUE) &amp;&amp; TRUE</item>
+        <item>(FALSE || FALSE || FALSE)</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>Less than or equal to</item>
+        <item>Set equal to</item>
+        <item>Greater than or equal to</item>
+        <item>Less than</item>
+    </string-array>
+
+    <!-- END -->
 
 
 
+
+    <!-- CONDITIONS & SELECTION quiz values -->
+
+    <string-array name="cond_questions">
+        <item>What is an \'if\' statement?</item>
+        <item>What is a \'switch\' statement?</item>
+        <item>What number is value after this \'switch\'?</item>
+        <item>What is \'else if\'?</item>
+        <item>What is the purpose of a conditional statement?</item>
+        <item>What is a conditional statement within another called?</item>
+        <item>What number is value after the \'switch\'?</item>
+        <item>What is output by this code? The \'word\' or \'sentence\'?</item>
+        <item>What is the purpose of \'else\'?</item>
+        <item>What is a nested conditional statement?</item>
+    </string-array>
+    <string-array name="cond_types">
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>ui</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+    </string-array>
+    <string-array name="cond_correct_answers">
+        <item>A conditional statement that will execute its code based on a boolean condition</item>
+        <item>A conditional statement that will execute a different branch of code depending on a value</item>
+        <item>6 six</item>
+        <item>A conditional statement that will check a different condition, if the first was false</item>
+        <item>To execute code based on a certain type of condition</item>
+        <item>nested 2d</item>
+        <item>14 fourteen</item>
+        <item>word short hello false first</item>
+        <item>To execute code when the condition is false</item>
+        <item>A conditional statement within another conditional statement\'s code</item>
+    </string-array>
+    <string-array name="cond_wrong_answers">
+        <item>A collection of arrays</item>
+        <item>A conditional statement that will execute code based on an array</item>
+        <item>A conditional statement that will only execute inside a loop</item>
+        <item>A container for many boolean values</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>A container for many arrays of values</item>
+        <item>A conditional statement that will execute a different branch of code depending on a value</item>
+        <item>To check a list of conditions</item>
+        <item>To execute code repeatedly</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>To execute a a branch of code multiple times depending on a value</item>
+        <item>To compare values</item>
+        <item>A conditional statement that will only execute inside a loop</item>
+        <item>A container for many boolean values</item>
+    </string-array>
+
+    <!-- END -->
+
+    <!-- LOOPS quiz values -->
+
+    <string-array name="loops_questions">
+
+        <item>What is a loop in programming?</item>
+        <item>What is the number stored in variable \'b\' at the end of this loop?</item>
+        <item>What is the purpose of a loop?</item>
+        <item>What is a While loop?</item>
+        <item>What is a For loop?</item>
+        <item>What is a \'nested\' loop?</item>
+        <item>What is a loop counter?</item>
+        <item>What is the purpose of a \'nested\' loop?</item>
+        <item>What is the number stored in variable \'b\' at the end of this loop?</item>
+        <item>What is the value of \'sum\' at the end of this loop?</item>
+    </string-array>
+
+    <string-array name="loops_types">
+        <item>mc</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>ui</item>
+    </string-array>
+
+    <string-array name="loops_answers">
+        <item>A structure that allows code to be repeatedly executed</item>
+        <item>8 eight</item>
+        <item>To repeatedly execute code a number of times, or until a condition is met</item>
+        <item>A conditional loop that executes code based on a boolean value</item>
+        <item>A fixed loop that executes code a certain number of times</item>
+        <item>A loop that is inside another loop</item>
+        <item>A value that tracks the number of times a loop has executed</item>
+        <item>To iterate over the items in an array multiple times</item>
+        <item>4 four</item>
+        <item>15 fifteen</item>
+    </string-array>
+
+    <string-array name="loops_wrong_answers">
+        <item>A structure that executes different code depending on a condition</item>
+        <item>A named container for storing a value</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>To separate integer and string data in an array</item>
+        <item>To output the value held by a variable</item>
+        <item>A fixed loop that executes code a certain number of times</item>
+        <item>A loop that is inside another loop</item>
+        <item>A loop that is inside another loop</item>
+        <item>The total number of times the loop has executed</item>
+        <item>A fixed loop that executes code a certain number of times</item>
+        <item>A collection of variables</item>
+        <item>A condition that causes the loop to execute when met</item>
+        <item>A value that counts the number of loops used in a program</item>
+        <item>To select a section of code to run based on a condition</item>
+        <item>To rename all of the variables used in a section of code</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+    </string-array>
+
+    <!-- END -->
+
+    <!-- funcs quiz values -->
+
+    <string-array name="funcs_questions">
+
+        <item>What is a function in programming?</item>
+        <item>What is the name of this function?</item>
+        <item>What is a function parameter?</item>
+        <item>What is the purpose of a function\'s return statement?</item>
+        <item>Which of these function data types return no value?</item>
+        <item>What data type does this function return?</item>
+        <item>What are the data types of this function\'s parameters?</item>
+        <item>What is the purpose of functions?</item>
+        <item>Which of the following shows a function being accessed?</item>
+        <item>What is the value of \'sum\' that this function returns?</item>
+    </string-array>
+
+    <string-array name="funcs_types">
+        <item>mc</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+        <item>ui</item>
+        <item>mc</item>
+        <item>mc</item>
+        <item>ui</item>
+    </string-array>
+
+    <string-array name="funcs_answers">
+        <item>A reusable section of code that performs a specific task</item>
+        <item>functionExample</item>
+        <item>A variable that receives data the function needs to perform its task</item>
+        <item>To pass new data back to the code that executed the function</item>
+        <item>Void</item>
+        <item>String str text</item>
+        <item>Float flt decimal</item>
+        <item>To split code into smaller, more manageable and reusable chunks</item>
+        <item>number = getNewNumber();</item>
+        <item>55 fiftyfive</item>
+    </string-array>
+
+    <string-array name="funcs_wrong_answers">
+        <item>A structure that executes different code depending on a condition</item>
+        <item>A named container for storing a value</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>A value that passes data back from the function</item>
+        <item>A collection of variables</item>
+        <item>To repeatedly execute code a certain number of times</item>
+        <item>To check if a condition has been met</item>
+        <item>String</item>
+        <item>Null</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>N/A</item>
+        <item>To select a section of code to run based on a condition</item>
+        <item>To repeatedly execute code a certain number of times</item>
+        <item>number = 5 + 10;</item>
+        <item>number * number = 2</item>
+        <item>N/A</item>
+        <item>N/A</item>
+    </string-array>
 
     <!-- END -->
 

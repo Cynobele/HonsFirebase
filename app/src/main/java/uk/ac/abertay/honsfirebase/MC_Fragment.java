@@ -19,8 +19,10 @@ public class MC_Fragment extends Fragment implements View.OnClickListener{
 
     private Button option_1, option_2, option_3;
     private TextView question_text;
+    private int selected, location;
 
     public MC_Fragment() {/*constructor*/}
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,25 +35,28 @@ public class MC_Fragment extends Fragment implements View.OnClickListener{
 
         option_1.setOnClickListener(this);
         option_2.setOnClickListener(this);
+        option_3.setOnClickListener(this);
 
-        //use getFirstPackEntry, not poll, or questions will end early
-        Map.Entry<Integer, Question> entry = ((QuizActivity)getActivity()).getFirstPackEntry();
-        Question obj = entry.getValue();
+        option_1.setBackgroundColor(Color.LTGRAY); //set initial button colours
+        option_2.setBackgroundColor(Color.LTGRAY);
+        option_3.setBackgroundColor(Color.LTGRAY);
 
-        question_text.setText(obj.getQuestion());
+        selected = 0;
 
+        Question q = new Question(getArguments().getString("q_text"), getArguments().getStringArray("answers"), getArguments().getString("q_correct"), "mc");
 
-        //TODO - when an option is selected in the quiz, change its color
-        /*
-        option_1.setBackgroundColor(Color.BLUE);
-        option_2.setBackgroundColor(Color.YELLOW);
-        option_3.setBackgroundColor(Color.GREEN);
-        */
+        question_text.setText(q.getQuestion()); //display question
 
-        setButtonOrder(obj);
+        setButtonOrder(q); //randomise the order of buttons
 
         return inflated_view;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
 
 
     private void setButtonOrder(Question q){
@@ -64,6 +69,7 @@ public class MC_Fragment extends Fragment implements View.OnClickListener{
                 option_2.setText(q.getCorrect_answer());
                 option_3.setText(q.getAnswers()[0]);
 
+                location = 2;
                 break;
             case 1:
 
@@ -71,6 +77,7 @@ public class MC_Fragment extends Fragment implements View.OnClickListener{
                 option_2.setText(q.getAnswers()[1]);
                 option_3.setText(q.getCorrect_answer());
 
+                location = 3;
                 break;
             case 2:
 
@@ -78,12 +85,58 @@ public class MC_Fragment extends Fragment implements View.OnClickListener{
                 option_2.setText(q.getAnswers()[1]);
                 option_3.setText(q.getAnswers()[0]);
 
+                location = 1;
                 break;
         }
+    }
+
+    public int getResultFromMC(){
+
+        if(selected == 0){
+            return 2; //nothing was selected, display message to user
+        }else if(selected == location){
+
+            return 1; // selected answer is correct
+        }else{
+            return 0; // selected answer was incorrect
+        }
+    }
+
+    public void setSelected(int i){
+        this.selected = i;
     }
 
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()){
+            case R.id.top_button:
+
+                option_1.setBackgroundColor(Color.GREEN);
+                option_2.setBackgroundColor(Color.LTGRAY);
+                option_3.setBackgroundColor(Color.LTGRAY);
+
+                selected = 1; //button 1 was last selected
+
+                break;
+            case R.id.mid_button:
+
+                option_1.setBackgroundColor(Color.LTGRAY);
+                option_2.setBackgroundColor(Color.GREEN);
+                option_3.setBackgroundColor(Color.LTGRAY);
+
+                selected = 2; //button 2 was last selected
+
+                break;
+            case R.id.bot_button:
+
+                option_1.setBackgroundColor(Color.LTGRAY);
+                option_2.setBackgroundColor(Color.LTGRAY);
+                option_3.setBackgroundColor(Color.GREEN);
+
+                selected = 3; //button 3 was last selected
+
+                break;
+        }
     }
 }

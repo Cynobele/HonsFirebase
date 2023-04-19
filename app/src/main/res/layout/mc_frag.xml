@@ -22,10 +22,16 @@
             android:id="@+id/top_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15px"/>
         <Button
             android:id="@+id/mid_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15px"/>
         <Button
             android:id="@+id/bot_button"
             android:layout_width="match_parent"

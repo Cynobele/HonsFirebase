@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import org.jetbrains.annotations.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,10 +21,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private FrameLayout container;
     private String tag = "initial";
     private TreeMap<Integer, Question> pack;
+    private TreeMap<Integer, Boolean> answers = new TreeMap<>();
     private FragmentManager fm = getSupportFragmentManager();
 
     //TODO - add other fragment inits once classes are created
     private Fragment multiple_choice = new MC_Fragment();
+    private Fragment user_input = new UI_Fragment();
+    private Fragment score_frag = new Score_Fragment();
 
 
     @Override
@@ -76,14 +77,122 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 //get the random 5
                 pack = get5RandomQuestions();
 
+                Log.d("Map Keys", ""+pack.keySet());
                 //check the first and begin transaction
-                Question first = getFirstQuestion(pack);
+                //Question first = getFirstQuestion(pack);
 
-                switchFragment(first, null);
+                //Map.Entry<Integer, Question> first = pollFirstPackEntry();
 
+                switchFragment(getVisibleFrag());
+
+                break;
+            case "OPER_QUIZ":
+                questions = getResources().getStringArray(R.array.oper_questions);
+                q_types = getResources().getStringArray(R.array.oper_types);
+                correct_answers = getResources().getStringArray(R.array.oper_correct_answers);
+                wrong_answers = getResources().getStringArray(R.array.oper_wrong_answers);
+
+                //dump any map content before attempting to fill
+                if(!qc.isMapEmpty()){
+                    qc.emptyMapContent();
+                }
+
+                for(int i=1; i<=10; i++){
+
+                    //e.g. if question is i=3, get the answers at 5 & 6 (i*2-2) & (i*2-1)
+                    incorrects = new String[]{wrong_answers[(i * 2) - 2], wrong_answers[(i * 2) - 1]};
+
+                    Question q = new Question(questions[i-1], incorrects, correct_answers[i-1], q_types[i-1]);
+                    qc.addQuestion(i-1, q);
+                }
+
+                pack = get5RandomQuestions();
+
+                Log.d("Map Keys", ""+pack.keySet());
+
+                switchFragment(getVisibleFrag());
+                break;
+            case "COND_QUIZ":
+                questions = getResources().getStringArray(R.array.cond_questions);
+                q_types = getResources().getStringArray(R.array.cond_types);
+                correct_answers = getResources().getStringArray(R.array.cond_correct_answers);
+                wrong_answers = getResources().getStringArray(R.array.cond_wrong_answers);
+
+                //dump any map content before attempting to fill
+                if(!qc.isMapEmpty()){
+                    qc.emptyMapContent();
+                }
+
+                for(int i=1; i<=10; i++){
+
+                    //e.g. if question is i=3, get the answers at 5 & 6 (i*2-2) & (i*2-1)
+                    incorrects = new String[]{wrong_answers[(i * 2) - 2], wrong_answers[(i * 2) - 1]};
+
+                    Question q = new Question(questions[i-1], incorrects, correct_answers[i-1], q_types[i-1]);
+                    qc.addQuestion(i-1, q);
+                }
+
+                pack = get5RandomQuestions();
+
+                Log.d("Map Keys", ""+pack.keySet());
+
+                switchFragment(getVisibleFrag());
+                break;
+            case "LOOPS_QUIZ":
+
+                questions = getResources().getStringArray(R.array.loops_questions);
+                q_types = getResources().getStringArray(R.array.loops_types);
+                correct_answers = getResources().getStringArray(R.array.loops_answers);
+                wrong_answers = getResources().getStringArray(R.array.loops_wrong_answers);
+
+                //dump any map content before attempting to fill
+                if(!qc.isMapEmpty()){
+                    qc.emptyMapContent();
+                }
+
+                for(int i=1; i<=10; i++){
+
+                    //e.g. if question is i=3, get the answers at 5 & 6 (i*2-2) & (i*2-1)
+                    incorrects = new String[]{wrong_answers[(i * 2) - 2], wrong_answers[(i * 2) - 1]};
+
+                    Question q = new Question(questions[i-1], incorrects, correct_answers[i-1], q_types[i-1]);
+                    qc.addQuestion(i-1, q);
+                }
+
+                pack = get5RandomQuestions();
+
+                Log.d("Map Keys", ""+pack.keySet());
+
+                switchFragment(getVisibleFrag());
+                break;
+
+            case "FUNC_QUIZ":
+                questions = getResources().getStringArray(R.array.funcs_questions);
+                q_types = getResources().getStringArray(R.array.funcs_types);
+                correct_answers = getResources().getStringArray(R.array.funcs_answers);
+                wrong_answers = getResources().getStringArray(R.array.funcs_wrong_answers);
+
+                //dump any map content before attempting to fill
+                if(!qc.isMapEmpty()){
+                    qc.emptyMapContent();
+                }
+
+                for(int i=1; i<=10; i++){
+
+                    //e.g. if question is i=3, get the answers at 5 & 6 (i*2-2) & (i*2-1)
+                    incorrects = new String[]{wrong_answers[(i * 2) - 2], wrong_answers[(i * 2) - 1]};
+
+                    Question q = new Question(questions[i-1], incorrects, correct_answers[i-1], q_types[i-1]);
+                    qc.addQuestion(i-1, q);
+                }
+
+                pack = get5RandomQuestions();
+
+                Log.d("Map Keys", ""+pack.keySet());
+
+                switchFragment(getVisibleFrag());
+                break;
         }
-
-
     }
 
     //retreive QUESTIONS map from qc
@@ -105,17 +214,222 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         return rand_map;
     }
 
-    public Question getFirstQuestion(TreeMap<Integer, Question> questions){
-        return questions.firstEntry().getValue();
+    //Get the next question from the map and remove it
+    public Map.Entry<Integer, Question> pollFirstPackEntry(){
+        return pack.pollFirstEntry();
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+    }
 
+
+    //nullable frag - null is acceptable, as this means no fragment on display
+    private void switchFragment(/*Question q,*/ @Nullable Fragment frag){
+
+        Map.Entry<Integer, Question> entry = pollFirstPackEntry();
+        Question q = entry.getValue();
+
+        String x = q.getQuestion_type();
+        Bundle bundle = new Bundle();
+        bundle.putString("q_text", q.getQuestion());
+        bundle.putString("q_correct", q.getCorrect_answer());
+        bundle.putStringArray("answers", q.getAnswers());
+
+
+        if(frag != null) { //this section runs when a fragment is on display
+
+            if(frag.getTag() != x){
+                switch (x) {
+                    case "mc":
+                        multiple_choice.setArguments(bundle);
+
+                        fm.beginTransaction()
+                                .replace(R.id.fragment_container, multiple_choice, "mc")
+                                .setReorderingAllowed(true)
+                                .addToBackStack("multiple_choice")
+                                .commit();
+
+                        fm.beginTransaction().detach(frag).attach(frag).commit();
+
+                        break;
+                    case "ui":
+                        user_input.setArguments(bundle);
+
+                        fm.beginTransaction()
+                                .replace(R.id.fragment_container, user_input, "ui")
+                                .setReorderingAllowed(true)
+                                .addToBackStack("user_input")
+                                .commit();
+
+                        //adding this line causes the next question to not appear..?
+                        //fm.beginTransaction().detach(frag).attach(frag).commit();
+
+                        break;
+                    case "mt":
+
+                        break;
+                }
+            }
+            else{
+                Toast.makeText(this, "ELSE", Toast.LENGTH_SHORT).show();
+                fm.beginTransaction().detach(frag).attach(frag).commit();
+            }
+        }
+
+        //Transactions use .add()
+        else{
+            switch (x) {
+                case "mc":
+                    //display the multiple choice fragment
+
+
+                    multiple_choice.setArguments(bundle);
+
+                    fm.beginTransaction()
+                            .add(R.id.fragment_container, multiple_choice, "mc")
+                            .setReorderingAllowed(true)
+                            .addToBackStack("multiple_choice")
+                            .commit();
+
+                    break;
+                case "ui":
+
+                    user_input.setArguments(bundle);
+
+                    fm.beginTransaction()
+                            .add(R.id.fragment_container, user_input, "ui")
+                            .setReorderingAllowed(true)
+                            .addToBackStack("user_input")
+                            .commit();
+
+                    break;
+                case "mt":
+
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.submit:
+
+                Fragment f = getVisibleFrag();
+                String behaviour = f.getTag();
+                Boolean can_move = false; //can we move to next question?
+                int result_code; //default to the no input code
+
+
+                switch (behaviour){
+                    case "mc":
+
+                        Log.d("", getSupportFragmentManager().findFragmentById(f.getId()).toString());
+                        //collect and save selected question from multiple choice
+                        MC_Fragment mc_f = (MC_Fragment) getSupportFragmentManager().findFragmentByTag("mc");
+                        result_code = mc_f.getResultFromMC();
+
+                        if(result_code == 2) { // no answer selected
+                            Toast.makeText(this, "No option was chosen!", Toast.LENGTH_SHORT).show();
+                            can_move = false;
+                        }else if(result_code == 0) { //incorrect answer chosen
+
+                            if(!answers.isEmpty())
+                            {answers.put(answers.size(), false);}
+                            else{answers.put(0, false);}
+
+                            can_move = true;
+
+                        }else{ //correct answer chosen
+
+                            if(!answers.isEmpty())
+                            {answers.put(answers.size(), true);}
+                            else{answers.put(0, true);}
+
+                            can_move = true;
+                        }
+
+                        //reset the selected answer so the next question cannot be left unanswered
+                        mc_f.setSelected(0);
+                        break;
+
+                    case "ui":
+                        //collect and save user input & result
+
+                        UI_Fragment ui_f = (UI_Fragment)getSupportFragmentManager().findFragmentByTag("ui");
+                        result_code = ui_f.getResultFromUI();
+
+                        if(result_code == 2) { // no input
+                            Toast.makeText(this, "The input box was left empty!", Toast.LENGTH_SHORT).show();
+                            can_move = false;
+                        }
+                        else if(result_code == 0) { //incorrect answer
+
+                            if(!answers.isEmpty())
+                            {answers.put(answers.size(), false);}
+                            else{answers.put(0, false);}
+
+                            can_move = true;
+                        }
+                        else{ //correct answer
+                            if(!answers.isEmpty())
+                            {answers.put(answers.size(), true);}
+                            else{answers.put(0, true);}
+
+                            can_move = true;
+                        }
+                        break;
+                }
+
+
+
+                if(!pack.isEmpty() && can_move){
+
+                    switchFragment(f);
+
+                }else if(pack.isEmpty() && answers.size() == 5){//all questions have been asked
+
+
+                    //TODO - !!! save answers to firebase for storage !!!
+
+
+                    //  Calculate and display the score to the user
+                    int score = 0;
+                    Log.d("Answer map ", "Keys: "+answers.keySet()+" | Vals: "+answers.values());
+                    Boolean[] vals = answers.values().toArray(new Boolean[1]);
+
+                    for(int i=0; i<answers.size(); i++){
+                        if(vals[i]){
+                            score += 1;
+                        }
+                    }
+
+                    Log.d("Score Array ", ""+vals[0]+" "+vals[1]+" "+vals[2]+" "+vals[3]+" "+vals[4]+"");
+                    // send the score to the score fragment for display
+                    Bundle b = new Bundle();
+                    b.putInt("score", score);
+                    score_frag.setArguments(b);
+
+                    fm.beginTransaction().replace(R.id.fragment_container, score_frag, "score")
+                            .setReorderingAllowed(true)
+                            .commit();
+
+
+                }else{ //huh? how did we get here...
+                    Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+        }
 
     }
+
+
+
 
     //gets the fragment that is visible - or returns null
     private Fragment getVisibleFrag(){
@@ -128,87 +442,5 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         return null;
-    }
-
-    //nullable frag - null is acceptable, as this means no fragment on display
-    private void switchFragment(Question q, @Nullable Fragment frag){
-
-        String x = q.getQuestion_type();
-
-        //TODO - fill out UI and MT cases once layouts and classes are implemented
-
-        if(frag != null) {
-            Toast.makeText(this, "Next Frag:"+x+" | Visible Frag:"+ frag.getTag(), Toast.LENGTH_SHORT).show();
-            switch (x) {
-                case "mc":
-
-                    //detach and reattach to force the fragment to refresh with new question content
-                    fm.beginTransaction().detach(frag)
-                            .attach(frag).commit();
-
-                    break;
-                case "ui":
-
-                    break;
-                case "mt":
-
-                    break;
-            }
-        }
-
-        //Transactions use .add()
-        else{
-            switch (x) {
-                case "mc":
-                    //display the multiple choice fragment
-                    fm.beginTransaction()
-                            .add(R.id.fragment_container, multiple_choice, "mc")
-                            .setReorderingAllowed(true)
-                            .addToBackStack("multiple_choice")
-                            .commit();
-
-                    break;
-                case "ui":
-
-                    break;
-                case "mt":
-
-                    break;
-            }
-        }
-    }
-
-    //Get the next question from the map and remove it
-    public Map.Entry<Integer, Question> pollFirstPackEntry(){
-        return pack.pollFirstEntry();
-    }
-    //Get the next question from the map
-    public Map.Entry<Integer, Question> getFirstPackEntry(){
-        return pack.firstEntry();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.submit:
-                //TODO - question submission behaivour
-                //selected answer should be saved then compared with actual correct answer
-                //next question button should begin question transaction for next question type
-
-
-                Toast.makeText(this, "BUTTON", Toast.LENGTH_SHORT).show();
-
-
-                if(!pack.isEmpty()){
-                    Map.Entry<Integer, Question> entry = pollFirstPackEntry();
-                    Question q = entry.getValue();
-                    switchFragment(q, getVisibleFrag());
-                }else{
-                    Toast.makeText(this, "Pack is empty...", Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-        }
-
     }
 }
