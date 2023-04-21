@@ -38,7 +38,7 @@ public class UI_Fragment extends Fragment {
         q = new Question(getArguments().getString("q_text"), getArguments().getStringArray("answers"), getArguments().getString("q_correct"), "ui");
 
 
-        input_field.setText(" ");
+        //input_field.setText(" ");
         input_field.setHint("Write your answer here");
         question_text.setText(q.getQuestion());
 
@@ -54,7 +54,8 @@ public class UI_Fragment extends Fragment {
 
         switch(corrects[0].toLowerCase()){
             //vars cases
-            case "no":
+            case "int":
+                image_container.setImageResource(R.drawable.array_struct);
                 break;
 
             //operator cases

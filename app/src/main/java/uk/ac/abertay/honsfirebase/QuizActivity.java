@@ -1,5 +1,6 @@
 package uk.ac.abertay.honsfirebase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -215,9 +216,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Get the next question from the map and remove it
-    public Map.Entry<Integer, Question> pollFirstPackEntry(){
-        return pack.pollFirstEntry();
-    }
+    public Map.Entry<Integer, Question> pollFirstPackEntry(){return pack.pollFirstEntry();}
 
 
     @Override
@@ -239,77 +238,32 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         bundle.putStringArray("answers", q.getAnswers());
 
 
-        if(frag != null) { //this section runs when a fragment is on display
+        if(frag != null) {
 
-            if(frag.getTag() != x){
-                switch (x) {
-                    case "mc":
-                        multiple_choice.setArguments(bundle);
-
-                        fm.beginTransaction()
-                                .replace(R.id.fragment_container, multiple_choice, "mc")
-                                .setReorderingAllowed(true)
-                                .addToBackStack("multiple_choice")
-                                .commit();
-
-                        fm.beginTransaction().detach(frag).attach(frag).commit();
-
-                        break;
-                    case "ui":
-                        user_input.setArguments(bundle);
-
-                        fm.beginTransaction()
-                                .replace(R.id.fragment_container, user_input, "ui")
-                                .setReorderingAllowed(true)
-                                .addToBackStack("user_input")
-                                .commit();
-
-                        //adding this line causes the next question to not appear..?
-                        //fm.beginTransaction().detach(frag).attach(frag).commit();
-
-                        break;
-                    case "mt":
-
-                        break;
-                }
-            }
-            else{
-                Toast.makeText(this, "ELSE", Toast.LENGTH_SHORT).show();
-                fm.beginTransaction().detach(frag).attach(frag).commit();
-            }
+            //remove any visible fragment before adding the next question
+            fm.beginTransaction().remove(frag).commit();
         }
 
-        //Transactions use .add()
-        else{
-            switch (x) {
-                case "mc":
-                    //display the multiple choice fragment
+        //display whichever fragment type the question requires
+        switch (x){
+            case "mc":
+                multiple_choice.setArguments(bundle);
 
+                fm.beginTransaction()
+                        .add(R.id.fragment_container, multiple_choice, "mc")
+                        .setReorderingAllowed(true)
+                        .addToBackStack("multiple_choice")
+                        .commit();
+                break;
+            case "ui":
+                user_input.setArguments(bundle);
 
-                    multiple_choice.setArguments(bundle);
-
-                    fm.beginTransaction()
-                            .add(R.id.fragment_container, multiple_choice, "mc")
-                            .setReorderingAllowed(true)
-                            .addToBackStack("multiple_choice")
-                            .commit();
-
-                    break;
-                case "ui":
-
-                    user_input.setArguments(bundle);
-
-                    fm.beginTransaction()
-                            .add(R.id.fragment_container, user_input, "ui")
-                            .setReorderingAllowed(true)
-                            .addToBackStack("user_input")
-                            .commit();
-
-                    break;
-                case "mt":
-
-                    break;
-            }
+                fm.beginTransaction()
+                        .add(R.id.fragment_container, user_input, "ui")
+                        .setReorderingAllowed(true)
+                        .addToBackStack("user_input")
+                        .commit();
+                break;
         }
     }
 
@@ -324,11 +278,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 Boolean can_move = false; //can we move to next question?
                 int result_code; //default to the no input code
 
+                Log.d("Behaviour onClick", ""+behaviour);
 
                 switch (behaviour){
                     case "mc":
 
-                        Log.d("", getSupportFragmentManager().findFragmentById(f.getId()).toString());
                         //collect and save selected question from multiple choice
                         MC_Fragment mc_f = (MC_Fragment) getSupportFragmentManager().findFragmentByTag("mc");
                         result_code = mc_f.getResultFromMC();
@@ -394,13 +348,24 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }else if(pack.isEmpty() && answers.size() == 5){//all questions have been asked
 
 
+
                     //TODO - !!! save answers to firebase for storage !!!
 
+                    if(behaviour == "score"){
+                        //score has been displayed
+                        Intent intent = new Intent(this, HomeActivity.class);
+                        //passing a key to homeactivity will auto redirect to select screen
+                        intent.putExtra("frag", "QUIZ_SELECT");
+                        startActivity(intent);
+                    }
 
                     //  Calculate and display the score to the user
                     int score = 0;
                     Log.d("Answer map ", "Keys: "+answers.keySet()+" | Vals: "+answers.values());
                     Boolean[] vals = answers.values().toArray(new Boolean[1]);
+
+                    //primitive boolean array, so it can be added to bundle
+                    boolean[] upload_vals = {vals[0], vals[1], vals[2], vals[3], vals[4]};
 
                     for(int i=0; i<answers.size(); i++){
                         if(vals[i]){
@@ -412,6 +377,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     // send the score to the score fragment for display
                     Bundle b = new Bundle();
                     b.putInt("score", score);
+                    b.putBooleanArray("answers", upload_vals);
                     score_frag.setArguments(b);
 
                     fm.beginTransaction().replace(R.id.fragment_container, score_frag, "score")

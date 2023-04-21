@@ -48,9 +48,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             String tag = extras.getString("frag");
             extras.remove("frag");
             setContentView(R.layout.activity_home_container);
-            fm.beginTransaction().add(R.id.fragment_container, lesson_select, "lesson_select")
-                    .setReorderingAllowed(true)
-                    .addToBackStack("lesson_select").commit();
+            switch(tag){
+                case "LESSON_SELECT":
+                    fm.beginTransaction().add(R.id.fragment_container, lesson_select, "lesson_select")
+                            .setReorderingAllowed(true)
+                            .addToBackStack("lesson_select").commit();
+                    break;
+                case "QUIZ_SELECT":
+                    fm.beginTransaction().add(R.id.fragment_container, quiz_select, "quiz_select")
+                            .setReorderingAllowed(true)
+                            .addToBackStack("quiz_select").commit();
+                    break;
+            }
+
         }
 
     }

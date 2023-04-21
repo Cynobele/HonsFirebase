@@ -194,7 +194,7 @@
         <item>What is an Integer data type?</item>
         <item>What is a Boolean data type?</item>
         <item>What is a Float data type?</item>
-        <item>Can we assign values from one data type to variables of another type?</item>
+        <item>What is the data type of the array?</item>
         <item>What is the camel case naming convention?</item>
         <item>What is the pascal case naming convention?</item>
         <item>What is the snake case naming convention?</item>
@@ -219,7 +219,7 @@
         <item>A whole number, negative or positive</item>
         <item>A logical value that can be either True or False</item>
         <item>A decimal number, negative or positive</item>
-        <item>no cant cannot impossible incorrect</item>
+        <item>int integer number</item>
         <item>Each word in the variable name is capitalized, except the first word</item>
         <item>Every word in the variable name is capitalized</item>
         <item>Each word in the variable name is separated by underscores</item>
