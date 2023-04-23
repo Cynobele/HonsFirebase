@@ -63,7 +63,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
         auth = FirebaseAuth.getInstance();
         FirebaseUser current_user = auth.getCurrentUser();
         if(current_user != null){
-            Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Logged in as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -79,7 +79,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
                             //Upon successfully creating an account, the user will be automatically logged in by Firebase
                             //So we redirect them to the login fragment, so that they are passed to the home page (thanks to being logged in already!)
                             //This saves the user from having to press any additional buttons
-                            Toast.makeText(getContext(), "ACCOUNT CREATED!", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "ACCOUNT CREATED!", Toast.LENGTH_SHORT).show();
                             fm.beginTransaction()
                                     .replace(R.id.fragment_container, new LoginFragment(), "login")
                                     .setReorderingAllowed(true)
@@ -87,7 +87,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
                                     .commit();
                         } else {
                             // If account creation fails, display an error message to the user
-                            Toast.makeText(getContext(), "ACCOUNT COULD NOT BE CREATED!\n" +task.getException()
+                            Toast.makeText(getContext(), "" +task.getException()
                                     , Toast.LENGTH_LONG).show();
                             //logs firebase exception
                             Log.d("~~RegistrationException~~", "Exception: "+task.getException());
@@ -156,7 +156,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
                 }else { Toast.makeText(getContext(), "Passwords must match!", Toast.LENGTH_SHORT).show(); }
             }
             else{
-                Toast.makeText(getContext(), "Password is empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Password must be 5 or more characters!", Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(getContext(), "Email is empty!", Toast.LENGTH_SHORT).show();

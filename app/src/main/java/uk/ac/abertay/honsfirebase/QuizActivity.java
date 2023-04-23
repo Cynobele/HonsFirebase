@@ -26,7 +26,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private TreeMap<Integer, Boolean> answers = new TreeMap<>();
     private FragmentManager fm = getSupportFragmentManager();
 
-    //TODO - add other fragment inits once classes are created
+    // fragments
     private Fragment multiple_choice = new MC_Fragment();
     private Fragment user_input = new UI_Fragment();
     private Fragment score_frag = new Score_Fragment();
@@ -207,6 +207,24 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 switchFragment(getVisibleFrag());
                 break;
 
+        }
+    }
+
+    //SUMMARY
+    //when the back button is pressed and a fragment is in display,
+    //only remove the fragment if there is another to show
+    //- if no fragments, then restart the selection activity
+    @Override
+    public void onBackPressed() {
+        if(fm.getFragments().size() == 1) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            //pass a key to make home activity automatically start the quiz selection activity
+            //this will make it appear as if we only went back 1 screen...
+            intent.putExtra("frag", "QUIZ_SELECT");
+            startActivity(intent);
+        }else{
+            //get number of frags (add or replace)
+            super.onBackPressed();
         }
     }
 

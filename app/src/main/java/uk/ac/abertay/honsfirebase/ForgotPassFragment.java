@@ -62,13 +62,11 @@ public class ForgotPassFragment extends Fragment implements View.OnClickListener
     //sanitisies user input
     //sends password reset link if email meets criteria
     private String getEmailForPasswordReset(){
-        //TODO - force email text patterns to be entered
 
         Editable input = email_field.getText(); //get user input
         if(input != null && input.length() > 0){
             //user entered a value
             String sanitised = input.toString();
-            //TODO - input validation
             return sanitised;
         }else{
             Toast.makeText(getContext(), "Email field is empty!", Toast.LENGTH_SHORT).show();

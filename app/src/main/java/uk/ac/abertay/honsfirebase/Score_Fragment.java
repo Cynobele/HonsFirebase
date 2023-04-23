@@ -28,8 +28,6 @@ public class Score_Fragment extends Fragment {
         img4 = inflated_view.findViewById(R.id.answer_image_4);
         img5 = inflated_view.findViewById(R.id.answer_image_5);
 
-        //TODO - pass the array of bools and display graphics for correct or wrong answers
-        // - 5 small images
         int score = getArguments().getInt("score");
         boolean[] answers = getArguments().getBooleanArray("answers");
 

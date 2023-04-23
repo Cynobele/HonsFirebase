@@ -83,7 +83,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             //SUMMARY
             //log out user account and redirect to MainActivity (login etc)
             case R.id.logout_button:
-                //TODO - ask if sure before logging out
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

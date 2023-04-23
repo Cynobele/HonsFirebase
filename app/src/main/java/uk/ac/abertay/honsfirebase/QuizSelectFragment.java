@@ -45,9 +45,6 @@ public class QuizSelectFragment extends Fragment implements View.OnClickListener
     }
 
 
-
-    //TODO - vars quiz now working, other topics need implemented
-
     //SUMMARY
     //  Launches a quiz activity based on user selection
     @Override

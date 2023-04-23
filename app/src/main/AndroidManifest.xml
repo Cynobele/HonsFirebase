@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.QUIZ" />
