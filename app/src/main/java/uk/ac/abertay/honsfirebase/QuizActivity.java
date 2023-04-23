@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
@@ -193,13 +194,88 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
                 switchFragment(getVisibleFrag());
                 break;
+
+            case "MIXED_QUIZ":
+                //get all of the content in one map
+                //select random questions from it & insert into pack
+                //switch fragment as usual
+
+                createMixedMap();
+                pack = get5RandomQuestions();
+                Log.d("(Mixed) Map Keys", ""+pack.keySet());
+
+                switchFragment(getVisibleFrag());
+                break;
+
         }
+    }
+
+    private void createMixedMap(){
+
+        //create the question objects
+        //have to gather all of the resources...
+        String[] vars_q = getResources().getStringArray(R.array.vars_questions);
+        String[] oper_q = getResources().getStringArray(R.array.oper_questions);
+        String[] cond_q = getResources().getStringArray(R.array.cond_questions);
+        String[] loop_q = getResources().getStringArray(R.array.loops_questions);
+        String[] func_q = getResources().getStringArray(R.array.funcs_questions);
+
+        String[] vars_correct = getResources().getStringArray(R.array.vars_correct_answers);
+        String[] oper_correct = getResources().getStringArray(R.array.oper_correct_answers);
+        String[] cond_correct = getResources().getStringArray(R.array.cond_correct_answers);
+        String[] loop_correct = getResources().getStringArray(R.array.loops_answers);
+        String[] func_correct = getResources().getStringArray(R.array.funcs_answers);
+
+        String[] vars_wrong = getResources().getStringArray(R.array.vars_wrong_answers);
+        String[] oper_wrong = getResources().getStringArray(R.array.oper_wrong_answers);
+        String[] cond_wrong = getResources().getStringArray(R.array.cond_wrong_answers);
+        String[] loop_wrong = getResources().getStringArray(R.array.loops_wrong_answers);
+        String[] func_wrong = getResources().getStringArray(R.array.funcs_wrong_answers);
+
+        String[] vars_types = getResources().getStringArray(R.array.vars_types);
+        String[] oper_types = getResources().getStringArray(R.array.oper_types);
+        String[] cond_types = getResources().getStringArray(R.array.cond_types);
+        String[] loop_types = getResources().getStringArray(R.array.loops_types);
+        String[] func_types = getResources().getStringArray(R.array.funcs_types);
+
+        String[] vars_incorrects, oper_incorrects, cond_incorrects, loop_incorrects, func_incorrects;
+        Question q;
+
+        //build all of the question maps at once
+        for(int i=1; i<=10; i++){
+
+            vars_incorrects = new String[]{vars_wrong[(i*2)-2], vars_wrong[(i*2)-1]};
+            q = new Question(vars_q[i-1], vars_incorrects, vars_correct[i-1] , vars_types[i-1]);
+            qc.addMixedQuestion("vars_"+(i-1) , q);
+
+            oper_incorrects = new String[]{oper_wrong[(i*2)-2], oper_wrong[(i*2)-1]};
+            q = new Question(oper_q[i-1], oper_incorrects, oper_correct[i-1] , oper_types[i-1]);
+            qc.addMixedQuestion("oper_"+(i-1) , q);
+
+            cond_incorrects = new String[]{cond_wrong[(i*2)-2], cond_wrong[(i*2)-1]};
+            q = new Question(cond_q[i-1], cond_incorrects, cond_correct[i-1] , cond_types[i-1]);
+            qc.addMixedQuestion("cond_"+(i-1) , q);
+
+            loop_incorrects = new String[]{loop_wrong[(i*2)-2], loop_wrong[(i*2)-1]};
+            q = new Question(loop_q[i-1], loop_incorrects, loop_correct[i-1] , loop_types[i-1]);
+            qc.addMixedQuestion("loop_"+(i-1) , q);
+
+            func_incorrects = new String[]{func_wrong[(i*2)-2], func_wrong[(i*2)-1]};
+            q = new Question(func_q[i-1], func_incorrects, func_correct[i-1] , func_types[i-1]);
+            qc.addMixedQuestion("func_"+(i-1) , q);
+        }
+
+
+        //combine the 5 topic maps into a mixed map
+        qc.combineMaps();
     }
 
     //retreive QUESTIONS map from qc
     //grab 5 random questions and return them
     public TreeMap<Integer, Question> get5RandomQuestions(){
 
+        //since 'pack' is a TreeMap is will auto sort the 'random' selection by asc...
+        //unfortunately HashMap cannot use poll so no easy way around this, just live with it
         TreeMap<Integer, Question> rand_map = new TreeMap<>();
 
         while(rand_map.size() < 5) {
@@ -216,8 +292,21 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Get the next question from the map and remove it
-    public Map.Entry<Integer, Question> pollFirstPackEntry(){return pack.pollFirstEntry();}
+    public Map.Entry<Integer, Question> pollFirstPackEntry() {
 
+
+        //get a number from 1-100, if num is even then get the first value
+        //get the last value if it is odd
+        //this is supposed to make the questions appear 'randomly'
+
+        int rand = new Random().nextInt(100);
+        if (rand % 2 == 0) {
+            //even
+            return pack.pollFirstEntry();
+        } else {
+            return pack.pollLastEntry();
+        }
+    }
 
     @Override
     protected void onStart() {
@@ -239,7 +328,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
         if(frag != null) {
-
             //remove any visible fragment before adding the next question
             fm.beginTransaction().remove(frag).commit();
         }
@@ -348,41 +436,45 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }else if(pack.isEmpty() && answers.size() == 5){//all questions have been asked
 
 
-
-                    //TODO - !!! save answers to firebase for storage !!!
-
+                    //score is already displayed
                     if(behaviour == "score"){
-                        //score has been displayed
                         Intent intent = new Intent(this, HomeActivity.class);
                         //passing a key to homeactivity will auto redirect to select screen
                         intent.putExtra("frag", "QUIZ_SELECT");
                         startActivity(intent);
-                    }
+                    }else {
 
-                    //  Calculate and display the score to the user
-                    int score = 0;
-                    Log.d("Answer map ", "Keys: "+answers.keySet()+" | Vals: "+answers.values());
-                    Boolean[] vals = answers.values().toArray(new Boolean[1]);
+                        //write scores to firebase realtime database
+                        //and then display the score on screen
 
-                    //primitive boolean array, so it can be added to bundle
-                    boolean[] upload_vals = {vals[0], vals[1], vals[2], vals[3], vals[4]};
+                        FirebaseController fc = new FirebaseController();
+                        fc.writeScore(answers, tag); // tag should be the quiz topic
 
-                    for(int i=0; i<answers.size(); i++){
-                        if(vals[i]){
-                            score += 1;
+                        //  Calculate and display the score to the user
+                        int score = 0;
+                        Log.d("Answer map ", "Keys: " + answers.keySet() + " | Vals: " + answers.values());
+                        Boolean[] vals = answers.values().toArray(new Boolean[1]);
+
+                        //primitive boolean array, so it can be added to bundle
+                        boolean[] upload_vals = {vals[0], vals[1], vals[2], vals[3], vals[4]};
+
+                        for (int i = 0; i < answers.size(); i++) {
+                            if (vals[i]) {
+                                score += 1;
+                            }
                         }
+
+                        Log.d("Score Array ", "" + vals[0] + " " + vals[1] + " " + vals[2] + " " + vals[3] + " " + vals[4] + "");
+                        // send the score to the score fragment for display
+                        Bundle b = new Bundle();
+                        b.putInt("score", score);
+                        b.putBooleanArray("answers", upload_vals);
+                        score_frag.setArguments(b);
+
+                        fm.beginTransaction().replace(R.id.fragment_container, score_frag, "score")
+                                .setReorderingAllowed(true)
+                                .commit();
                     }
-
-                    Log.d("Score Array ", ""+vals[0]+" "+vals[1]+" "+vals[2]+" "+vals[3]+" "+vals[4]+"");
-                    // send the score to the score fragment for display
-                    Bundle b = new Bundle();
-                    b.putInt("score", score);
-                    b.putBooleanArray("answers", upload_vals);
-                    score_frag.setArguments(b);
-
-                    fm.beginTransaction().replace(R.id.fragment_container, score_frag, "score")
-                            .setReorderingAllowed(true)
-                            .commit();
 
 
                 }else{ //huh? how did we get here...

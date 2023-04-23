@@ -57,43 +57,39 @@ public class QuizSelectFragment extends Fragment implements View.OnClickListener
 
         switch (view.getId()){
             case R.id.quiz_variables:
-                Toast.makeText(getContext(), "VARIABLES QUIZ", Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("FRAG_TAG", "VARS_QUIZ");
                 startActivity(intent);
                 break;
 
             case R.id.quiz_operators:
-                Toast.makeText(getContext(), "OPERATORS QUIZ", Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("FRAG_TAG", "OPER_QUIZ");
                 startActivity(intent);
                 break;
 
             case R.id.quiz_conditions:
-                Toast.makeText(getContext(), "CONDITIONS & SELECTION QUIZ", Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("FRAG_TAG", "COND_QUIZ");
                 startActivity(intent);
                 break;
 
             case R.id.quiz_loops:
-                Toast.makeText(getContext(), "LOOPS QUIZ", Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("FRAG_TAG", "LOOPS_QUIZ");
                 startActivity(intent);
                 break;
 
             case R.id.quiz_functions:
-                Toast.makeText(getContext(), "FUNCTIONS QUIZ", Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("FRAG_TAG", "FUNC_QUIZ");
                 startActivity(intent);
                 break;
 
             case R.id.quiz_mixed:
-//TODO - the mixed quiz should only be accessed once the user has attempted the other 5 at least one time
-                Toast.makeText(getContext(), "MIXED QUIZ", Toast.LENGTH_SHORT).show();
+
+                intent.putExtra("FRAG_TAG", "MIXED_QUIZ");
+                startActivity(intent);
                 break;
         }
     }
