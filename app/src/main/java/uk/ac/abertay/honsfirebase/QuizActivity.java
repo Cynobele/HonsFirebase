@@ -50,7 +50,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        Toast.makeText(this, "TAG: "+tag, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "TAG: "+tag, Toast.LENGTH_SHORT).show();
 
         String[] questions={}, q_types={}, wrong_answers={}, correct_answers={}, incorrects;
         switch (tag){
@@ -496,7 +496,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 }else{ //huh? how did we get here...
-                    Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT).show();
                 }
 
                 break;

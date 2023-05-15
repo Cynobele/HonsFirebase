@@ -117,7 +117,6 @@ public class UI_Fragment extends Fragment {
 
     private String sanitiseStringInput(String input){
         String regex = "[^a-zA-Z0-9\\s]";
-
         //remove all non-english characters & symbols
         //only text and numbers will remain
         return input.replaceAll(regex, "");

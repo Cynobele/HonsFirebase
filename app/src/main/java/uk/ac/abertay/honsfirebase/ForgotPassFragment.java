@@ -53,7 +53,7 @@ public class ForgotPassFragment extends Fragment implements View.OnClickListener
         auth = FirebaseAuth.getInstance();
         FirebaseUser current_user = auth.getCurrentUser();
         if(current_user != null){
-            Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Logged in as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -92,7 +92,7 @@ public class ForgotPassFragment extends Fragment implements View.OnClickListener
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getContext(), "Password reset link has been sent!\nPlease check your spam folder!", Toast.LENGTH_SHORT).show();
                                     }else{
-                                        Toast.makeText(getContext(), "ERROR!\n"+task.getException(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getContext(), "Error!\n"+task.getException(), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -102,7 +102,7 @@ public class ForgotPassFragment extends Fragment implements View.OnClickListener
             //SUMMARY
             //redirect to create account fragment view
             case R.id.create_acc:
-                Toast.makeText(getContext(), "ForgotPass => CreateAcc", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "ForgotPass => CreateAcc", Toast.LENGTH_SHORT).show();
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new CreateAccFragment(), "create_acc")
                         .setReorderingAllowed(true)
@@ -113,7 +113,7 @@ public class ForgotPassFragment extends Fragment implements View.OnClickListener
             //SUMMARY
             //redirect to login fragment view
             case R.id.login:
-                Toast.makeText(getContext(), "ForgotPass => Login", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), "ForgotPass => Login", Toast.LENGTH_SHORT).show();
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new LoginFragment(), "login")
                         .setReorderingAllowed(true)

@@ -63,6 +63,7 @@ public class Score_Fragment extends Fragment {
         }
     }
 
+    //display a tick or a cross based on the result
     private void setImage(int i, boolean j){
         switch(i){
             case 0:

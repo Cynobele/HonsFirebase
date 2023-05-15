@@ -57,7 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         FirebaseUser current_user = auth.getCurrentUser();
         if(current_user != null){ //redirect if already logged in
-            Toast.makeText(getContext(), "Logged into firebase as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Logged in as "+current_user.getEmail(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), HomeActivity.class);
             startActivity(intent);
         }
@@ -102,12 +102,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in successful
                             FirebaseUser user = auth.getCurrentUser();
-                            Toast.makeText(getContext(), "LOGIN SUCCESSFUL!\nEmail:"+user.getEmail(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Logged in!\nEmail:"+user.getEmail(), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(), HomeActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user and log exception
-                            Toast.makeText(getContext(), "COULD NOT LOGIN",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Login Failed!",Toast.LENGTH_SHORT).show();
                             Log.d("~~Login Exception~~", "Exception: "+task.getException());
                         }
                     }
@@ -131,7 +131,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             //SUMMARY
             //launch create account fragment to submit details for account creation
             case R.id.create_acc:
-                Toast.makeText(getContext(), "Login => Create Account", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "Login => Create Account", Toast.LENGTH_SHORT).show();
 
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new CreateAccFragment(),"create_acc")
@@ -143,7 +143,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             //SUMMARY
             //launch forgot password fragment
             case R.id.forgot_pass:
-                Toast.makeText(getContext(), "Login => Forgot Password", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "Login => Forgot Password", Toast.LENGTH_SHORT).show();
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new ForgotPassFragment(), "forgot_pass")
                         .setReorderingAllowed(true)

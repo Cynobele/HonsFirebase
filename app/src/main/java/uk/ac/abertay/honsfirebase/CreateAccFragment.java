@@ -113,7 +113,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             //SUMMARY
             //launch login fragment transaction
             case R.id.login:
-                Toast.makeText(getContext(), "CreateAcc => Login", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "CreateAcc => Login", Toast.LENGTH_SHORT).show();
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new LoginFragment(), "login")
                         .setReorderingAllowed(true)
@@ -124,7 +124,7 @@ public class CreateAccFragment extends Fragment implements View.OnClickListener 
             //SUMMARY
             //launch forgot password fragment transaction
             case R.id.forgot_pass:
-                Toast.makeText(getContext(), "CreateAcc => ForgotPass", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), "CreateAcc => ForgotPass", Toast.LENGTH_SHORT).show();
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new ForgotPassFragment(), "forgot_pass")
                         .setReorderingAllowed(true)
